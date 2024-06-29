@@ -113,3 +113,6 @@ tree-sitter-sparql.wasm
 log.html
 build
 package-lock.json
+
+# Rust build output
+/target
