@@ -14,15 +14,15 @@ VALUES ?var {
 
 (unit
   (select_query
-    (select_clause) 
+    (select_clause)
     (where_clause
       (group_graph_pattern)))
-  (values_clause 
+  (values_clause
     (data_block
       (var)
       (iri_reference)
       (iri_reference)
-      (prefixed_name 
+      (prefixed_name
         (namespace (pn_prefix))
         (pn_local)))))
 
@@ -51,26 +51,26 @@ VALUES ?var {
 
 (unit
   (select_query
-    (select_clause) 
+    (select_clause)
     (where_clause
       (group_graph_pattern)))
-  (values_clause 
+  (values_clause
     (data_block
       (var)
-      (rdf_literal (string)) 
-      (rdf_literal (string)) 
-      (rdf_literal (string)) 
-      (rdf_literal (string) (lang_tag)) 
-      (rdf_literal (string) (iri_reference)) 
-      (rdf_literal (string)) 
-      (boolean_literal) 
+      (rdf_literal (string))
+      (rdf_literal (string))
+      (rdf_literal (string))
+      (rdf_literal (string) (lang_tag))
+      (rdf_literal (string) (iri_reference))
+      (rdf_literal (string))
+      (boolean_literal)
       (rdf_literal (string)
-      (prefixed_name (namespace (pn_prefix)) (pn_local))) 
+      (prefixed_name (namespace (pn_prefix)) (pn_local)))
       (decimal)
       (decimal)
       (double)
-      (rdf_literal 
-        (string) 
+      (rdf_literal
+        (string)
         (prefixed_name (namespace (pn_prefix)) (pn_local))))))
 
 =======================
@@ -86,7 +86,7 @@ VALUES ?var {
 ---
 
 (unit (select_query
-  (select_clause) 
+  (select_clause)
   (where_clause (group_graph_pattern)))
   (values_clause (data_block
     (var)
@@ -103,9 +103,9 @@ SELECT $foo ?bar {}
 
 ---
 
-(unit 
-  (select_query 
-    (select_clause (var) (var)) 
+(unit
+  (select_query
+    (select_clause (var) (var))
     (where_clause (group_graph_pattern))))
 
 ============
@@ -115,15 +115,16 @@ Blank nodes
 SELECT * {
   [ :p "v" ] .
   [] :p "v" .
-  :s :q [ :p "v" ]
+  :s :q [ :p "v" ] .
+  _:s.9._.a ?s ?p
 }
 
 ---
 
-(unit 
-  (select_query 
+(unit
+  (select_query
     (select_clause)
-    (where_clause 
+    (where_clause
       (group_graph_pattern
         (triples_block
           (triples_same_subject
@@ -143,8 +144,14 @@ SELECT * {
               (object_list
                 (blank_node_property_list (property_list (property
                   (path_element (prefixed_name (namespace) (pn_local)))
-                  (object_list (rdf_literal (string)))))))))))))))
-
+                  (object_list (rdf_literal (string))))))))))
+              (triples_same_subject
+                (blank_node_label)
+                (property_list
+                  (property
+                    (var)
+                    (object_list
+                      (var))))))))))
 ====
 Nil
 ====
