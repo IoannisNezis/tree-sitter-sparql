@@ -237,11 +237,6 @@
     }
   },
   {
-    "type": "blank_node_label",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "blank_node_property_list",
     "named": true,
     "fields": {},
@@ -2260,6 +2255,10 @@
     "named": false
   },
   {
+    "type": "!=",
+    "named": false
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -2784,15 +2783,15 @@
     "named": false
   },
   {
-    "type": "_:",
-    "named": false
-  },
-  {
     "type": "a",
     "named": false
   },
   {
     "type": "anon",
+    "named": true
+  },
+  {
+    "type": "blank_node_label",
     "named": true
   },
   {
