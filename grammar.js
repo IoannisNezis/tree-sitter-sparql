@@ -77,7 +77,7 @@ const PN_LOCAL_ESC = [
   '%'
 ].map(char => '\\' + char)
 
-String.prototype.toCaseInsensitiv = function () {
+String.prototype.toCaseInsensitiv = function() {
   return alias(
     token(new RegExp(
       this
