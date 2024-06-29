@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-sparql"
 description = "sparql grammar for the tree-sitter parsing library"
-version = "0.1.1"
+version = "0.1.2"
 keywords = ["incremental", "parsing", "sparql"]
 categories = ["parsing", "text-editors"]
 repository = "https://github.com/IoannisNezis/tree-sitter-sparql"
