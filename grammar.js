@@ -105,7 +105,7 @@ module.exports = grammar({
     $._query
   ],
 
-  word: $ => $.pn_prefix,
+  word: $ => $.PN_PREFIX,
 
   rules: {
 
@@ -161,14 +161,14 @@ module.exports = grammar({
     // [5]
     base_declaration: $ => seq(
       'BASE'.toCaseInsensitiv(),
-      $.iri_reference
+      $.IRIREF
     ),
 
     // [6]
     prefix_declaration: $ => seq(
       'PREFIX'.toCaseInsensitiv(),
-      $.namespace,
-      $.iri_reference
+      $.PNAME_NS,
+      $.IRIREF
     ),
 
     // [7]
@@ -196,12 +196,12 @@ module.exports = grammar({
       )),
       choice(
         repeat1(choice(
-          field('bound_variable', $.var),
+          field('bound_variable', $.VAR),
           seq(
             '(',
             $._expression,
             'AS'.toCaseInsensitiv(),
-            field('bound_variable', $.var),
+            field('bound_variable', $.VAR),
             ')'
           )
         )),
@@ -317,11 +317,11 @@ module.exports = grammar({
         $._expression,
         optional(seq(
           'AS'.toCaseInsensitiv(),
-          field('bound_variable', $.var)
+          field('bound_variable', $.VAR)
         )),
         ')'
       ),
-      field('bound_variable', $.var)
+      field('bound_variable', $.VAR)
     ),
 
     // [21]
@@ -348,7 +348,7 @@ module.exports = grammar({
       ),
       choice(
         $._constraint,
-        $.var
+        $.VAR
       )
     ),
 
@@ -362,13 +362,13 @@ module.exports = grammar({
     // [26]
     limit_clause: $ => seq(
       'LIMIT'.toCaseInsensitiv(),
-      $.integer
+      $.INTEGER
     ),
 
     // [27]
     offset_clause: $ => seq(
       'OFFSET'.toCaseInsensitiv(),
-      $.integer
+      $.INTEGER
     ),
 
     // [28]
@@ -582,7 +582,7 @@ module.exports = grammar({
       '(',
       $._expression,
       'AS'.toCaseInsensitiv(),
-      field('bound_variable', $.var),
+      field('bound_variable', $.VAR),
       ')'
     ),
 
@@ -597,7 +597,7 @@ module.exports = grammar({
 
     // [63]
     _inline_data_one_var: $ => seq(
-      field('bound_variable', $.var),
+      field('bound_variable', $.VAR),
       '{',
       repeat($._data_block_value),
       '}'
@@ -606,17 +606,17 @@ module.exports = grammar({
     // [64]
     _inline_data_full: $ => seq(
       choice(
-        $.nil,
+        $.NIL,
         seq(
           '(',
-          repeat1(field('bound_variable', $.var)),
+          repeat1(field('bound_variable', $.VAR)),
           ')'
         )
       ),
       '{',
       repeat(choice(
         seq('(', repeat1($._data_block_value), ')'),
-        $.nil
+        $.NIL
       )),
       '}'
     ),
@@ -657,7 +657,7 @@ module.exports = grammar({
 
     // [71]
     arg_list: $ => choice(
-      $.nil,
+      $.NIL,
       seq(
         '(',
         optional('DISTINCT'.toCaseInsensitiv()),
@@ -669,7 +669,7 @@ module.exports = grammar({
 
     // [72]
     expression_list: $ => choice(
-      $.nil,
+      $.NIL,
       seq(
         '(',
         $._expression,
@@ -773,7 +773,7 @@ module.exports = grammar({
     // [85]
     _predicate_path: $ => choice(
       $._path,
-      $.var
+      $.VAR
     ),
 
     // [86]
@@ -898,18 +898,18 @@ module.exports = grammar({
 
     // [106]
     _var_or_term: $ => choice(
-      $.var,
+      $.VAR,
       $._graph_term
     ),
 
     // [107]
     _var_or_iri: $ => choice(
-      $.var,
+      $.VAR,
       $._iri,
     ),
 
     // [108, 143, 144, 166]
-    var: $ => token(seq(
+    VAR: $ => token(seq(
       choice(
         '?',
         '$'
@@ -934,7 +934,7 @@ module.exports = grammar({
       $._numeric_literal,
       $.boolean_literal,
       $._blank_node,
-      $.nil
+      $.NIL
     ),
 
     _expression: $ => choice(
@@ -979,7 +979,7 @@ module.exports = grammar({
       $.rdf_literal,
       $._numeric_literal,
       $.boolean_literal,
-      $.var
+      $.VAR
     ),
 
     // [120]
@@ -1007,10 +1007,10 @@ module.exports = grammar({
       $._variadic_build_in_function,
       seq(
         'BOUND'.toCaseInsensitiv(),
-        field('arguments', seq('(', $.var, ')'))),
+        field('arguments', seq('(', $.VAR, ')'))),
       seq(
         'BNODE'.toCaseInsensitiv(),
-        field('arguments', choice($.bracketted_expression, $.nil))
+        field('arguments', choice($.bracketted_expression, $.NIL))
       ),
       seq(
         'IF'.toCaseInsensitiv(),
@@ -1026,7 +1026,7 @@ module.exports = grammar({
           'UUID'
         ].map(i => i.toCaseInsensitiv())
       ),
-      field('arguments', $.nil)
+      field('arguments', $.NIL)
     ),
 
 
@@ -1184,15 +1184,15 @@ module.exports = grammar({
     rdf_literal: $ => seq(
       field('value', $.string),
       optional(choice(
-        $.lang_tag,
+        $.LANGTAG,
         field('datatype', seq('^^', $._iri))
       ))
     ),
 
     _numeric_literal: $ => choice(
-      $.integer,
-      $.decimal,
-      $.double
+      $.INTEGER,
+      $.DECIMAL,
+      $.DOUBLE
     ),
 
     // [134]
@@ -1204,15 +1204,13 @@ module.exports = grammar({
 
     // [135]
     string: $ => choice(
-      $._string_literal1,
-      $._string_literal2,
-      $._string_literal_long1,
-      $._string_literal_long2,
+      $.STRING_LITERAL,
+      $.STRING_LITERAL_LONG,
     ),
 
     // [136]
     _iri: $ => choice(
-      $.iri_reference,
+      $.IRIREF,
       $.prefixed_name
     ),
 
@@ -1220,31 +1218,28 @@ module.exports = grammar({
     // [137]
     // [141]
     prefixed_name: $ => seq(
-      $.namespace,
-      optional($.pn_local)
+      $.PNAME_NS,
+      optional($.PN_LOCAL)
     ),
 
     // [138]
     _blank_node: $ => choice(
-      $.blank_node_label,
-      $.anon
+      $.BLANK_NODE_LABEL,
+      $.ANON
     ),
 
     // [139]
-    iri_reference: $ => seq(
-      '<',
-      token.immediate(/([^<>"{}|^`\\\x00-\x20])*/),
-      token.immediate('>')
-    ),
+    IRIREF: $ => /<([^<>"{}|^`\\\x00-\x20])*>/,
 
     // [140]
-    namespace: $ => seq(
-      optional($.pn_prefix),
+    // TODO: This also accepts namespace :, but token.immediate does not work here.
+    PNAME_NS: $ => seq(
+      optional($.PN_PREFIX),
       ':'
     ),
 
     // [142]
-    blank_node_label: $ => token(seq(
+    BLANK_NODE_LABEL: $ => token(seq(
       '_:',
       choice(
         ...PN_CHARS_U,
@@ -1260,19 +1255,19 @@ module.exports = grammar({
     )),
 
     // [145]
-    lang_tag: $ => token(seq(
+    LANGTAG: $ => token(seq(
       '@', /[a-zA-Z]+/,
       repeat(seq('-', /[a-zA-Z0-9]+/))
     )),
 
     // [146]
-    integer: $ => token(/[+-]?[0-9]+/),
+    INTEGER: $ => token(/[+-]?[0-9]+/),
 
     // [147]
-    decimal: $ => token(seq(/[+-]?/, /[0-9]*/, '.', /[0-9]+/)),
+    DECIMAL: $ => token(seq(/[+-]?/, /[0-9]*/, '.', /[0-9]+/)),
 
     // [148]
-    double: $ => token(seq(
+    DOUBLE: $ => token(seq(
       /[+-]?/,
       choice(
         seq(/[0-9]+/, '.', /[0-9]*/, seq(...EXPONENT)),
@@ -1282,29 +1277,24 @@ module.exports = grammar({
     ),
 
 
-    // [156]
-    _string_literal1: $ => seq(
-      "'",
+
+    // NOTE: Here STRING_LITERAL1 [156] and STRING_LITERAL2 [157] is consolidated into a single token to simplify the resulting CSTs
+    // NOTE: ECHAR [160] is inligned into this rule to allow token() to be used
+    // [156] [157] [160]
+    STRING_LITERAL: $ => seq(
+      choice("'", '"'),
       repeat(choice(
         /[^\x27\x5C\x0A\x0D]/,
-        $.echar
+        /\\[tbnrf\\"']/
       )),
-      "'"
+      choice("'", '"')
     ),
 
-    // [157]
-    _string_literal2: $ => seq(
-      '"',
-      repeat(choice(
-        /[^\x22\x5C\x0A\x0D]/,
-        $.echar
-      )),
-      '"',
-    ),
-
+    // NOTE: Here STRING_LITERAL_LONG1 [158] and STRING_LITERAL_LONG2 [159] is consolidated into a single token to simplify the resulting CSTs
+    // NOTE: ECHAR [160] is inligned into this rule to allow token() to be used
     // [158]
-    _string_literal_long1: $ => seq(
-      "'''",
+    STRING_LITERAL_LONG: $ => seq(
+      choice("'''", '"""'),
       repeat(seq(
         optional(choice(
           "'",
@@ -1312,48 +1302,29 @@ module.exports = grammar({
         )),
         choice(
           /[^'\\]/,
-          $.echar
+          /\\[tbnrf\\"']/
         )
       )),
-      "'''",
+      choice("'''", '"""')
     ),
-
-    // [159]
-    _string_literal_long2: $ => seq(
-      '"""',
-      repeat(seq(
-        optional(choice(
-          '"',
-          '""',
-        )),
-        choice(
-          /[^"\\]/,
-          $.echar
-        )
-      )),
-      '"""',
-    ),
-
-    // [160]
-    echar: $ => /\\[tbnrf\\"']/,
 
 
     // [161]
-    nil: $ => token(seq(
+    NIL: $ => token(seq(
       '(',
       repeat(choice(...WS)),
       ')'
     )),
 
     // [163]
-    anon: $ => token(seq(
+    ANON: $ => token(seq(
       '[',
       repeat(choice(...WS)),
       ']'
     )),
 
     // [168]
-    pn_prefix: $ => token(seq(
+    PN_PREFIX: $ => token(seq(
       choice(...PN_CHARS_BASE),
       optional(seq(
         repeat(choice(
@@ -1365,7 +1336,7 @@ module.exports = grammar({
     )),
 
     // [169]
-    pn_local: $ => token.immediate(seq(
+    PN_LOCAL: $ => token.immediate(seq(
       choice(
         ...PN_CHARS_U,
         ':',
