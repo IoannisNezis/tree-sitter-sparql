@@ -269,7 +269,7 @@ module.exports = grammar({
     // [17]
     where_clause: $ => seq(
       optional('WHERE'.toCaseInsensitiv()),
-      $.group_graph_pattern
+      $.GroupGraphPattern
     ),
 
     // [18]
@@ -448,7 +448,7 @@ module.exports = grammar({
       ),
       repeat($.using_clause),
       'WHERE'.toCaseInsensitiv(),
-      $.group_graph_pattern
+      $.GroupGraphPattern
     ),
 
     // [42]
@@ -519,22 +519,35 @@ module.exports = grammar({
     ),
 
     // [53]
-    // [54]
-    group_graph_pattern: $ => seq(
+    // NOTE: In the Spec GroupGraphPatternSub is not optional,
+    // this is done here because tree-sitter does not allow rules that match the empty string
+    GroupGraphPattern: $ => seq(
       '{',
-      choice(
-        $.sub_select,
-        seq(
-          optional($.triples_block),
-          repeat(seq(
+      optional($.GroupGraphPatternSub),
+      '}'
+    ),
+
+    // [54]
+    // NOTE: Here the rule is altered s.t. it does not match the empty string.
+    GroupGraphPatternSub: $ => choice(
+      $.sub_select,
+      seq(
+        choice(
+          $.triples_block,
+          seq(
             $._graph_pattern_not_triples,
             optional('.'),
             optional($.triples_block)
-          ))
-        )
-      ),
-      '}'
+          )
+        ),
+        repeat(seq(
+          $._graph_pattern_not_triples,
+          optional('.'),
+          optional($.triples_block)
+        ))
+      )
     ),
+
 
     // [55]
     triples_block: $ => seq(
@@ -559,13 +572,13 @@ module.exports = grammar({
     ),
 
     // [57]
-    optional_graph_pattern: $ => seq('OPTIONAL'.toCaseInsensitiv(), $.group_graph_pattern),
+    optional_graph_pattern: $ => seq('OPTIONAL'.toCaseInsensitiv(), $.GroupGraphPattern),
 
     // [58]
     graph_graph_pattern: $ => seq(
       'GRAPH'.toCaseInsensitiv(),
       $._var_or_iri,
-      $.group_graph_pattern
+      $.GroupGraphPattern
     ),
 
     // [59]
@@ -573,7 +586,7 @@ module.exports = grammar({
       'SERVICE'.toCaseInsensitiv(),
       optional('SILENT'.toCaseInsensitiv()),
       $._var_or_iri,
-      $.group_graph_pattern
+      $.GroupGraphPattern
     ),
 
     // [60]
@@ -631,12 +644,12 @@ module.exports = grammar({
     ),
 
     // [66]
-    minus_graph_pattern: $ => seq('MINUS'.toCaseInsensitiv(), $.group_graph_pattern),
+    minus_graph_pattern: $ => seq('MINUS'.toCaseInsensitiv(), $.GroupGraphPattern),
 
     // [67]
     group_or_union_graph_pattern: $ => seq(
-      $.group_graph_pattern,
-      repeat(seq('UNION'.toCaseInsensitiv(), $.group_graph_pattern))
+      $.GroupGraphPattern,
+      repeat(seq('UNION'.toCaseInsensitiv(), $.GroupGraphPattern))
     ),
 
     // [68]
@@ -1138,14 +1151,14 @@ module.exports = grammar({
     // [125]
     exists_func: $ => seq(
       'EXISTS'.toCaseInsensitiv(),
-      $.group_graph_pattern
+      $.GroupGraphPattern
     ),
 
     // [126]
     not_exists_func: $ => seq(
       'NOT'.toCaseInsensitiv(),
       'EXISTS'.toCaseInsensitiv(),
-      $.group_graph_pattern
+      $.GroupGraphPattern
     ),
 
     // [127]
@@ -1361,4 +1374,4 @@ module.exports = grammar({
       ))
     )),
   }
-});
+})
