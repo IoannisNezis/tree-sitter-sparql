@@ -15,7 +15,7 @@
 //! [Parser]: https://docs.rs/tree-sitter/*/tree_sitter/struct.Parser.html
 //! [tree-sitter]: https://tree-sitter.github.io/
 
-use tree_sitter::Language;
+use tree_sitter_c2rust::Language;
 
 extern "C" {
     fn tree_sitter_sparql() -> Language;
@@ -42,11 +42,13 @@ pub const NODE_TYPES: &'static str = include_str!("../../src/node-types.json");
 
 #[cfg(test)]
 mod tests {
+    use tree_sitter_c2rust::Parser;
+
     #[test]
     fn test_can_load_grammar() {
-        let mut parser = tree_sitter::Parser::new();
+        let mut parser = Parser::new();
         parser
-            .set_language(super::language())
+            .set_language(&super::language())
             .expect("Error loading sparql language");
     }
 }

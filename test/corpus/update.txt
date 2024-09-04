@@ -10,17 +10,20 @@ INSERT DATA {
 
 ---
 
-(unit 
-  (insert_data 
-    (quads
-      (quads_not_triples
-        (iri_reference)
-        (triples_template
-          (triples_same_subject
-            (var)
-            (property_list (property
-              (var)
-              (object_list (var))))))))))
+(unit
+  (Update
+    (InsertData
+      (QuadData
+        (Quads
+          (QuadsNotTriples
+            (IRIREF)
+            (TriplesTemplateBlock
+              (TriplesTemplate
+                (TriplesSameSubject
+                  (VAR)
+                  (PropertyListNotEmpty
+                    (VAR)
+                    (ObjectList (VAR))))))))))))
 
 =====
 Load
@@ -31,6 +34,12 @@ LOAD :foo INTO GRAPH :bar
 ---
 
 (unit
-  (load
-    (prefixed_name (namespace) (pn_local))
-    (graph_ref (prefixed_name (namespace) (pn_local)))))
+  (Update
+    (Load
+      (PrefixedName
+        (PNAME_NS)
+        (PN_LOCAL))
+      (GraphRef
+        (PrefixedName
+          (PNAME_NS)
+            (PN_LOCAL))))))

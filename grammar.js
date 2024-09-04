@@ -102,93 +102,93 @@ module.exports = grammar({
   ],
 
   inline: $ => [
-    $._query
+    $.Query
   ],
 
   word: $ => $.PN_PREFIX,
 
   rules: {
 
-    unit: $ => repeat(choice(
-      $._query,
-      $._update
+    unit: $ => optional(choice(
+      $.Query,
+      $.Update
     )),
 
     comment: $ => token(prec(-1, /#.*/)),
 
     // [2]
-    _query: $ => seq(
-      optional($.prologue),
+    Query: $ => seq(
+      optional($.Prologue),
       choice(
-        $.select_query,
-        $.construct_query,
-        $.describe_query,
-        $.ask_query,
+        $.SelectQuery,
+        $.ConstructQuery,
+        $.DescribeQuery,
+        $.AskQuery,
       ),
-      optional($.values_clause)
+      optional($.ValuesClause)
     ),
 
     // [3, 29-30]
-    _update: $ => seq(
-      optional($.prologue),
+    Update: $ => seq(
+      optional($.Prologue),
       seq(
         choice(
-          $.load,
-          $.clear,
-          $.drop,
-          $.add,
-          $.move,
-          $.copy,
-          $.create,
-          $.insert_data,
-          $.delete_data,
-          $.delete_where,
-          $.modify
+          $.Load,
+          $.Clear,
+          $.Drop,
+          $.Add,
+          $.Move,
+          $.Copy,
+          $.Create,
+          $.InsertData,
+          $.DeleteData,
+          $.DeleteWhere,
+          $.Modify
         ),
         optional(seq(
           ';',
-          $._update
+          optional($.Update)
         ))
       )
     ),
 
     // [4]
-    prologue: $ => repeat1(choice(
-      $.base_declaration,
-      $.prefix_declaration
+    Prologue: $ => repeat1(choice(
+      $.BaseDecl,
+      $.PrefixDecl
     )),
 
     // [5]
-    base_declaration: $ => seq(
+    BaseDecl: $ => seq(
       'BASE'.toCaseInsensitiv(),
       $.IRIREF
     ),
 
     // [6]
-    prefix_declaration: $ => seq(
+    PrefixDecl: $ => seq(
       'PREFIX'.toCaseInsensitiv(),
       $.PNAME_NS,
       $.IRIREF
     ),
 
     // [7]
-    select_query: $ => seq(
-      $.select_clause,
-      repeat($.dataset_clause),
-      $.where_clause,
-      optional($.solution_modifier)
+    SelectQuery: $ => seq(
+      $.SelectClause,
+      repeat($.DatasetClause),
+      $.WhereClause,
+      optional($.SolutionModifier)
     ),
 
     // [8]
-    sub_select: $ => seq(
-      $.select_clause,
-      $.where_clause,
-      optional($.solution_modifier),
-      optional($.values_clause)
+    SubSelect: $ => seq(
+      $.SelectClause,
+      $.WhereClause,
+      optional($.SolutionModifier),
+      optional($.ValuesClause)
     ),
 
     // [9]
-    select_clause: $ => seq(
+    SelectClause: $ => seq(
       'SELECT'.toCaseInsensitiv(),
       optional(choice(
         'DISTINCT'.toCaseInsensitiv(),
@@ -210,108 +210,108 @@ module.exports = grammar({
     ),
 
     // [10]
-    construct_query: $ => seq(
+    ConstructQuery: $ => seq(
       'CONSTRUCT'.toCaseInsensitiv(),
       choice(
         seq(
-          $.construct_template,
-          repeat($.dataset_clause),
-          $.where_clause,
-          optional($.solution_modifier)
+          $.ConstructTemplate,
+          repeat($.DatasetClause),
+          $.WhereClause,
+          optional($.SolutionModifier)
         ),
         seq(
-          repeat($.dataset_clause),
-          'WHERE'.toCaseInsensitiv(), '{', $.triples_template, '}',
-          optional($.solution_modifier)
+          repeat($.DatasetClause),
+          'WHERE'.toCaseInsensitiv(), '{', $.TriplesTemplate, '}',
+          optional($.SolutionModifier)
         )
       )
     ),
 
     // [11]
-    describe_query: $ => seq(
+    DescribeQuery: $ => seq(
       'DESCRIBE'.toCaseInsensitiv(),
       choice(
         repeat1($._var_or_iri),
         '*'
       ),
-      repeat($.dataset_clause),
-      optional($.where_clause),
-      optional($.solution_modifier)
+      repeat($.DatasetClause),
+      optional($.WhereClause),
+      optional($.SolutionModifier)
     ),
 
     // [12]
-    ask_query: $ => seq(
+    AskQuery: $ => seq(
       'ASK'.toCaseInsensitiv(),
-      repeat($.dataset_clause),
-      $.where_clause,
-      optional($.solution_modifier)
+      repeat($.DatasetClause),
+      $.WhereClause,
+      optional($.SolutionModifier)
     ),
 
     // [13]
-    dataset_clause: $ => seq(
+    DatasetClause: $ => seq(
       'FROM'.toCaseInsensitiv(),
       choice(
-        $.default_graph_clause,
-        $.named_graph_clause
+        $.DefaultGraphClause,
+        $.NamedGraphClause
       )
     ),
 
     // [14]
     // [16]
-    default_graph_clause: $ => field('source_selector', $._iri),
+    DefaultGraphClause: $ => field('source_selector', $._iri),
 
     // [15-16]
-    named_graph_clause: $ => seq(
+    NamedGraphClause: $ => seq(
       'NAMED'.toCaseInsensitiv(),
       field('source_selector', $._iri)
     ),
 
     // [17]
-    where_clause: $ => seq(
+    WhereClause: $ => seq(
       optional('WHERE'.toCaseInsensitiv()),
       $.GroupGraphPattern
     ),
 
     // [18]
-    solution_modifier: $ => choice(
-      // Tree-sitter does not support syntactic rules that match the empty string
+    SolutionModifier: $ => choice(
+      // Tree-sitter does not support syntactic rules that match the empty String
       seq(
-        $.group_clause,
-        optional($.having_clause),
-        optional($.order_clause),
-        optional($.limit_offset_clauses)
+        $.GroupClause,
+        optional($.HavingClause),
+        optional($.OrderClause),
+        optional($.LimitOffsetClauses)
       ),
       seq(
-        optional($.group_clause),
-        $.having_clause,
-        optional($.order_clause),
-        optional($.limit_offset_clauses)
+        optional($.GroupClause),
+        $.HavingClause,
+        optional($.OrderClause),
+        optional($.LimitOffsetClauses)
       ),
       seq(
-        optional($.group_clause),
-        optional($.having_clause),
-        $.order_clause,
-        optional($.limit_offset_clauses)
+        optional($.GroupClause),
+        optional($.HavingClause),
+        $.OrderClause,
+        optional($.LimitOffsetClauses)
       ),
       seq(
-        optional($.group_clause),
-        optional($.having_clause),
-        optional($.order_clause),
-        $.limit_offset_clauses
+        optional($.GroupClause),
+        optional($.HavingClause),
+        optional($.OrderClause),
+        $.LimitOffsetClauses
       ),
     ),
 
     // [19]
-    group_clause: $ => seq(
+    GroupClause: $ => seq(
       'GROUP'.toCaseInsensitiv(),
       'BY'.toCaseInsensitiv(),
-      repeat1($.group_condition)
+      repeat1($.GroupCondition)
     ),
 
     // [20]
-    group_condition: $ => choice(
-      $._build_in_call,
-      $.function_call,
+    GroupCondition: $ => choice(
+      $.BuildInCall,
+      $.FunctionCall,
       seq(
         '(',
         $._expression,
@@ -325,26 +325,26 @@ module.exports = grammar({
     ),
 
     // [21]
-    having_clause: $ => seq(
+    HavingClause: $ => seq(
       'HAVING'.toCaseInsensitiv(),
-      repeat1($.having_condition)
+      repeat1($.HavingCondition)
     ),
 
     // [22]
-    having_condition: $ => $._constraint,
+    HavingCondition: $ => $._constraint,
 
     // [23]
-    order_clause: $ => seq(
+    OrderClause: $ => seq(
       'ORDER'.toCaseInsensitiv(),
       'BY'.toCaseInsensitiv(),
-      repeat1($.order_condition)
+      repeat1($.OrderCondition)
     ),
 
     // [24]
-    order_condition: $ => choice(
+    OrderCondition: $ => choice(
       seq(
         choice('ASC'.toCaseInsensitiv(), 'DESC'.toCaseInsensitiv()),
-        $.bracketted_expression
+        $.BrackettedExpression
       ),
       choice(
         $._constraint,
@@ -353,112 +353,112 @@ module.exports = grammar({
     ),
 
     // [25]
-    limit_offset_clauses: $ => choice(
-      seq($.limit_clause, optional($.offset_clause)),
-      seq($.offset_clause, optional($.limit_clause)
+    LimitOffsetClauses: $ => choice(
+      seq($.LimitClause, optional($.OffsetClause)),
+      seq($.OffsetClause, optional($.LimitClause)
       )
     ),
 
     // [26]
-    limit_clause: $ => seq(
+    LimitClause: $ => seq(
       'LIMIT'.toCaseInsensitiv(),
       $.INTEGER
     ),
 
     // [27]
-    offset_clause: $ => seq(
+    OffsetClause: $ => seq(
       'OFFSET'.toCaseInsensitiv(),
       $.INTEGER
     ),
 
     // [28]
-    values_clause: $ => seq('VALUES'.toCaseInsensitiv(), $.data_block),
+    ValuesClause: $ => seq('VALUES'.toCaseInsensitiv(), $.DataBlock),
 
     // [31]
-    load: $ => seq(
+    Load: $ => seq(
       'LOAD'.toCaseInsensitiv(),
       optional('SILENT'.toCaseInsensitiv()),
       $._iri,
-      optional(seq('INTO'.toCaseInsensitiv(), $.graph_ref))
+      optional(seq('INTO'.toCaseInsensitiv(), $.GraphRef))
     ),
 
     // [32]
-    clear: $ => seq(
+    Clear: $ => seq(
       'CLEAR'.toCaseInsensitiv(),
       optional('SILENT'.toCaseInsensitiv()),
-      $.graph_ref_all
+      $.GraphRefAll
     ),
 
     // [33]
-    drop: $ => seq(
+    Drop: $ => seq(
       'DROP'.toCaseInsensitiv(),
       optional('SILENT'.toCaseInsensitiv()),
-      $.graph_ref_all
+      $.GraphRefAll
     ),
 
     // [34]
-    create: $ => seq(
+    Create: $ => seq(
       'CREATE'.toCaseInsensitiv(),
       optional('SILENT'.toCaseInsensitiv()),
-      $.graph_ref
+      $.GraphRef
     ),
 
     // [35]
-    add: $ => seq(
+    Add: $ => seq(
       'ADD'.toCaseInsensitiv(),
       optional('SILENT'.toCaseInsensitiv()),
-      $.graph_or_default,
+      $.GraphOrDefault,
       'TO'.toCaseInsensitiv(),
-      $.graph_or_default
+      $.GraphOrDefault
     ),
 
     // [36]
-    move: $ => seq(
+    Move: $ => seq(
       'MOVE'.toCaseInsensitiv(),
       optional('SILENT'.toCaseInsensitiv()),
-      $.graph_or_default,
+      $.GraphOrDefault,
       'TO'.toCaseInsensitiv(),
-      $.graph_or_default
+      $.GraphOrDefault
     ),
 
     // [37]
-    copy: $ => seq(
+    Copy: $ => seq(
       'COPY'.toCaseInsensitiv(),
       optional('SILENT'.toCaseInsensitiv()),
-      $.graph_or_default,
+      $.GraphOrDefault,
       'TO'.toCaseInsensitiv(),
-      $.graph_or_default
+      $.GraphOrDefault
     ),
 
     // [38]
-    insert_data: $ => seq('INSERT DATA', $.quads),
+    InsertData: $ => seq('INSERT'.toCaseInsensitiv(), 'DATA'.toCaseInsensitiv(), $.QuadData),
 
     // [39]
-    delete_data: $ => seq('DELETE DATA', $.quads),
+    DeleteData: $ => seq('DELETE'.toCaseInsensitiv(), 'DATA'.toCaseInsensitiv(), $.QuadData),
 
     // [40]
-    delete_where: $ => seq('DELETE WHERE', $.quads),
+    DeleteWhere: $ => seq('DELETE'.toCaseInsensitiv(), 'WHERE'.toCaseInsensitiv(), $.QuadData),
 
     // [41]
-    modify: $ => seq(
+    Modify: $ => seq(
       optional(seq('WITH'.toCaseInsensitiv(), $._iri)),
       choice(
-        seq($.delete_clause, optional($.insert_clause)),
-        $.insert_clause
+        seq($.DeleteClause, optional($.InsertClause)),
+        $.InsertClause
       ),
-      repeat($.using_clause),
+      repeat($.UsingClause),
       'WHERE'.toCaseInsensitiv(),
       $.GroupGraphPattern
     ),
 
     // [42]
-    delete_clause: $ => seq('DELETE'.toCaseInsensitiv(), $.quads),
+    DeleteClause: $ => seq('DELETE'.toCaseInsensitiv(), $.QuadData),
 
     // [43]
-    insert_clause: $ => seq('INSERT'.toCaseInsensitiv(), $.quads),
+    InsertClause: $ => seq('INSERT'.toCaseInsensitiv(), $.QuadData),
 
     // [44]
-    using_clause: $ => seq(
+    UsingClause: $ => seq(
       'USING'.toCaseInsensitiv(),
       choice(
         $._iri,
@@ -467,7 +467,7 @@ module.exports = grammar({
     ),
 
     // [45]
-    graph_or_default: $ => choice(
+    GraphOrDefault: $ => choice(
       'DEFAULT'.toCaseInsensitiv(),
       seq(
         optional('GRAPH'.toCaseInsensitiv()),
@@ -475,11 +475,11 @@ module.exports = grammar({
     ),
 
     // [46]
-    graph_ref: $ => seq('GRAPH'.toCaseInsensitiv(), $._iri),
+    GraphRef: $ => seq('GRAPH'.toCaseInsensitiv(), $._iri),
 
     // [47]
-    graph_ref_all: $ => choice(
-      $.graph_ref,
+    GraphRefAll: $ => choice(
+      $.GraphRef,
       'DEFAULT'.toCaseInsensitiv(),
       'NAMED'.toCaseInsensitiv(),
       'ALL'.toCaseInsensitiv()
@@ -487,40 +487,58 @@ module.exports = grammar({
 
     // [48]
     // [49]
-    // [50]
-    quads: $ => seq(
+    QuadData: $ => seq(
       '{',
-      optional($.triples_template),
-      repeat(seq(
-        $.quads_not_triples,
-        optional('.'),
-        optional($.triples_template),
-      )),
+      optional($.Quads),
       '}'
+    ),
+
+    // [50]
+    // NOTE: Here the rule is altered s.t. it does not match the empty String.
+    Quads: $ => seq(
+      choice(
+        $.TriplesTemplate,
+        seq(
+          $.QuadsNotTriples,
+          optional('.'),
+          optional($.TriplesTemplate),
+        )
+      ),
+      repeat(seq(
+        $.QuadsNotTriples,
+        optional('.'),
+        optional($.TriplesTemplate),
+      )),
     ),
 
     // [51]
-    quads_not_triples: $ => seq(
+    QuadsNotTriples: $ => seq(
       'GRAPH'.toCaseInsensitiv(),
       $._var_or_iri,
+      $.TriplesTemplateBlock
+    ),
+
+    //NOTE: These are two extra rules to help with indentation.
+    TriplesTemplateBlock: $ => seq(
       '{',
-      optional($.triples_template),
+      optional($.TriplesTemplate),
       '}'
     ),
 
+
     // [52]
-    triples_template: $ => seq(
-      $.triples_same_subject,
+    TriplesTemplate: $ => seq(
+      $.TriplesSameSubject,
       repeat(seq(
         '.',
-        $.triples_same_subject
+        $.TriplesSameSubject
       )),
       optional('.')
     ),
 
     // [53]
     // NOTE: In the Spec GroupGraphPatternSub is not optional,
-    // this is done here because tree-sitter does not allow rules that match the empty string
+    // this is done here because tree-sitter does not allow rules that match the empty String
     GroupGraphPattern: $ => seq(
       '{',
       optional($.GroupGraphPatternSub),
@@ -528,61 +546,61 @@ module.exports = grammar({
     ),
 
     // [54]
-    // NOTE: Here the rule is altered s.t. it does not match the empty string.
+    // NOTE: Here the rule is altered s.t. it does not match the empty String.
     GroupGraphPatternSub: $ => choice(
-      $.sub_select,
+      $.SubSelect,
       seq(
         choice(
-          $.triples_block,
+          $.TriplesBlock,
           seq(
             $._graph_pattern_not_triples,
             optional('.'),
-            optional($.triples_block)
+            optional($.TriplesBlock)
           )
         ),
         repeat(seq(
           $._graph_pattern_not_triples,
           optional('.'),
-          optional($.triples_block)
+          optional($.TriplesBlock)
         ))
       )
     ),
 
 
     // [55]
-    triples_block: $ => seq(
-      alias($.triples_same_subject_path, $.triples_same_subject),
+    TriplesBlock: $ => seq(
+      $.TriplesSameSubjectPath,
       repeat(seq(
         '.',
-        alias($.triples_same_subject_path, $.triples_same_subject)
+        $.TriplesSameSubjectPath
       )),
       optional('.')
     ),
 
     // [56]
     _graph_pattern_not_triples: $ => choice(
-      $.group_or_union_graph_pattern,
-      $.optional_graph_pattern,
-      $.minus_graph_pattern,
-      $.graph_graph_pattern,
-      $.service_graph_pattern,
-      $.filter,
-      $.bind,
-      $.inline_data
+      $.GroupOrUnionGraphPattern,
+      $.OptionalGraphPattern,
+      $.MinusGraphPattern,
+      $.GraphGraphPattern,
+      $.ServiceGraphPattern,
+      $.Filter,
+      $.Bind,
+      $.InlineData
     ),
 
     // [57]
-    optional_graph_pattern: $ => seq('OPTIONAL'.toCaseInsensitiv(), $.GroupGraphPattern),
+    OptionalGraphPattern: $ => seq('OPTIONAL'.toCaseInsensitiv(), $.GroupGraphPattern),
 
     // [58]
-    graph_graph_pattern: $ => seq(
+    GraphGraphPattern: $ => seq(
       'GRAPH'.toCaseInsensitiv(),
       $._var_or_iri,
       $.GroupGraphPattern
     ),
 
     // [59]
-    service_graph_pattern: $ => seq(
+    ServiceGraphPattern: $ => seq(
       'SERVICE'.toCaseInsensitiv(),
       optional('SILENT'.toCaseInsensitiv()),
       $._var_or_iri,
@@ -590,7 +608,7 @@ module.exports = grammar({
     ),
 
     // [60]
-    bind: $ => seq(
+    Bind: $ => seq(
       'BIND'.toCaseInsensitiv(),
       '(',
       $._expression,
@@ -600,24 +618,24 @@ module.exports = grammar({
     ),
 
     // [61]
-    inline_data: $ => seq('VALUES'.toCaseInsensitiv(), $.data_block),
+    InlineData: $ => seq('VALUES'.toCaseInsensitiv(), $.DataBlock),
 
     // [62]
-    data_block: $ => choice(
-      $._inline_data_one_var,
-      $._inline_data_full
+    DataBlock: $ => choice(
+      $._InlineData_one_var,
+      $._InlineData_full
     ),
 
     // [63]
-    _inline_data_one_var: $ => seq(
+    _InlineData_one_var: $ => seq(
       field('bound_variable', $.VAR),
       '{',
-      repeat($._data_block_value),
+      repeat($._DataBlock_value),
       '}'
     ),
 
     // [64]
-    _inline_data_full: $ => seq(
+    _InlineData_full: $ => seq(
       choice(
         $.NIL,
         seq(
@@ -628,48 +646,48 @@ module.exports = grammar({
       ),
       '{',
       repeat(choice(
-        seq('(', repeat1($._data_block_value), ')'),
+        seq('(', repeat1($._DataBlock_value), ')'),
         $.NIL
       )),
       '}'
     ),
 
     // [65]
-    _data_block_value: $ => choice(
+    _DataBlock_value: $ => choice(
       $._iri,
-      $.rdf_literal,
+      $.RdfLiteral,
       $._numeric_literal,
       $.boolean_literal,
       'UNDEF'.toCaseInsensitiv()
     ),
 
     // [66]
-    minus_graph_pattern: $ => seq('MINUS'.toCaseInsensitiv(), $.GroupGraphPattern),
+    MinusGraphPattern: $ => seq('MINUS'.toCaseInsensitiv(), $.GroupGraphPattern),
 
     // [67]
-    group_or_union_graph_pattern: $ => seq(
+    GroupOrUnionGraphPattern: $ => seq(
       $.GroupGraphPattern,
       repeat(seq('UNION'.toCaseInsensitiv(), $.GroupGraphPattern))
     ),
 
     // [68]
-    filter: $ => seq('FILTER'.toCaseInsensitiv(), $._constraint),
+    Filter: $ => seq('FILTER'.toCaseInsensitiv(), $._constraint),
 
     // [69]
     _constraint: $ => choice(
-      $.bracketted_expression,
-      $._build_in_call,
-      $.function_call
+      $.BrackettedExpression,
+      $.BuildInCall,
+      $.FunctionCall
     ),
 
     // [70]
-    function_call: $ => seq(
+    FunctionCall: $ => seq(
       field('identifier', $._iri),
-      $.arg_list
+      $.ArgList
     ),
 
     // [71]
-    arg_list: $ => choice(
+    ArgList: $ => choice(
       $.NIL,
       seq(
         '(',
@@ -681,7 +699,7 @@ module.exports = grammar({
     ),
 
     // [72]
-    expression_list: $ => choice(
+    ExpressionList: $ => choice(
       $.NIL,
       seq(
         '(',
@@ -692,160 +710,181 @@ module.exports = grammar({
     ),
 
     // [73]
-    construct_template: $ => seq(
+    ConstructTemplate: $ => seq(
       '{',
-      $.construct_triples,
+      $.ConstructTriples,
       '}'
     ),
 
     // [74]
-    construct_triples: $ => seq(
-      $.triples_same_subject,
+    ConstructTriples: $ => seq(
+      $.TriplesSameSubject,
       repeat(seq(
         '.',
-        $.triples_same_subject
+        $.TriplesSameSubject
       )),
       optional('.')
     ),
 
     // [75]
     // [76]
-    triples_same_subject: $ => choice(
+    // NOTE: THis is not correct! TriplesSameSubject don't support Property-Paths.
+    TriplesSameSubject: $ => choice(
       seq(
-        $._var_or_term,
-        $.property_list
+        field('subject', $._var_or_term),
+        $.PropertyListNotEmpty
       ),
       seq(
         $._triples_node,
-        optional($.property_list)
+        optional($.PropertyListNotEmpty)
       )
     ),
 
     // [77]
-    property_list: $ => seq(
-      $.property,
+    PropertyListNotEmpty: $ => seq(
+      field('predicate', $._VERB),
+      $.ObjectList,
       repeat(seq(
         ';',
-        optional($.property)
+        field('predicate', $._VERB),
+        $.ObjectList,
       ))
     ),
 
-    // Enable incremental selection of properties
-    property: $ => seq(
-      $._predicate,
-      $.object_list,
-    ),
-
     // [78]
-    _predicate: $ => choice(
+    _VERB: $ => choice(
       $._var_or_iri,
       'a'
     ),
 
     // [79]
     // [80]
-    object_list: $ => seq(
-      $._graph_node,
-      repeat(seq(',', $._graph_node))
+    ObjectList: $ => seq(
+      field('object', $._graph_node),
+      repeat(seq(',', field('object', $._graph_node)))
     ),
 
     // [81]
     // [82]
-    triples_same_subject_path: $ => choice(
+    TriplesSameSubjectPath: $ => choice(
       seq(
         field('subject', $._var_or_term),
-        alias($.property_list_path, $.property_list)
+        $.PropertyListPathNotEmpty
       ),
       seq(
         $._triples_node_path,
-        optional(alias($.property_list_path, $.property_list))
+        optional($.PropertyListPathNotEmpty)
       )
     ),
 
     // [83]
-    property_list_path: $ => seq(
-      alias($.property_path, $.property),
+    PropertyListPathNotEmpty: $ => seq(
+      field('predicate',
+        choice(
+          $.Path,
+          $.VAR
+        )
+      ),
+      $.ObjectList,
       repeat(seq(
         ';',
-        optional(alias($.property_path_rest, $.property))
+        optional(
+          seq(
+            field('predicate',
+              choice(
+                $.Path,
+                $.VAR
+              )
+            ),
+            $.ObjectList,
+          )
+        )
       ))
-    ),
-
-    // Enable incremental selection of properties
-    property_path: $ => seq(
-      $._predicate_path,
-      alias($.object_list_path, $.object_list)
     ),
 
     property_path_rest: $ => seq(
       $._predicate_path,
-      $.object_list,
+      $.ObjectList,
     ),
 
     // [84]
     // [85]
     _predicate_path: $ => choice(
-      $._path,
+      $.Path,
       $.VAR
     ),
 
     // [86]
     // [87]
-    object_list_path: $ => seq(
+    ObjectList_path: $ => seq(
       $._graph_node_path,
       repeat(seq(',', $._graph_node_path))
     ),
 
-    // [88 - 92]
-    _path: $ => choice(
-      $.path_element,
-      $.binary_path
+    // [88]
+    Path: $ => seq(
+      $.PathSequence,
+      repeat(
+        seq(
+          '|',
+          $.PathSequence
+        )
+      )
     ),
 
-    binary_path: $ => choice(
-      prec.left(1, seq($._path, '/', $._path)),
-      prec.left(seq($._path, '|', $._path))
+    // [90]
+    PathSequence: $ => seq(
+      $.PathEltOrInverse,
+      repeat(
+        seq(
+          '/',
+          $.PathEltOrInverse
+        )
+      )
     ),
 
-    path_element: $ => seq(
-      optional($.path_inverse),
-      $._primary_path,
-      optional($.path_mod)
+    // [91]
+    PathElt: $ => seq(
+      $.PathPrimary,
+      optional($.PathMod)
     ),
 
     // [92]
-    path_inverse: $ => '^',
+    PathEltOrInverse: $ => seq(
+      optional('^'),
+      $.PathElt,
+    ),
 
     // [93]
-    path_mod: $ => token(choice(
+    PathMod: $ => choice(
       '?',
       '*',
       '+'
-    )),
+    ),
 
     // [94]
-    _primary_path: $ => choice(
+    PathPrimary: $ => choice(
       $._iri,
       'a',
-      seq('!', $.path_negated_property_set),
-      seq('(', $._path, ')')
+      seq('!', $.PathNegatedPropertySet),
+      seq('(', $.Path, ')')
     ),
 
     // [95]
-    path_negated_property_set: $ => choice(
-      $.path_one_in_property_set,
+    PathNegatedPropertySet: $ => choice(
+      $.PathOneInPropertySet,
       seq(
         '(',
         optional(seq(
-          $.path_one_in_property_set,
-          repeat(seq('|', $.path_one_in_property_set)),
+          $.PathOneInPropertySet,
+          repeat(seq('|', $.PathOneInPropertySet)),
         )),
         ')'
       )
     ),
 
     // [96]
-    path_one_in_property_set: $ => choice(
+    PathOneInPropertySet: $ => choice(
       $._iri,
       'a',
       seq(
@@ -860,26 +899,26 @@ module.exports = grammar({
     // [98]
     _triples_node: $ => choice(
       $.collection,
-      $.blank_node_property_list
+      $.BlankNodePropertyListPath
     ),
 
     // [99]
-    blank_node_property_list: $ => seq(
+    BlankNodePropertyList: $ => seq(
       '[',
-      $.property_list,
+      $.PropertyListNotEmpty,
       ']'
     ),
 
     // [100]
     _triples_node_path: $ => choice(
       alias($.collection_path, $.collection),
-      alias($.blank_node_property_list_path, $.blank_node_property_list)
+      $.BlankNodePropertyListPath
     ),
 
     // [101]
-    blank_node_property_list_path: $ => seq(
+    BlankNodePropertyListPath: $ => seq(
       '[',
-      alias($.property_list_path, $.property_list),
+      $.PropertyListPathNotEmpty,
       ']'
     ),
 
@@ -943,7 +982,7 @@ module.exports = grammar({
     // [109]
     _graph_term: $ => choice(
       $._iri,
-      $.rdf_literal,
+      $.RdfLiteral,
       $._numeric_literal,
       $.boolean_literal,
       $._blank_node,
@@ -956,25 +995,29 @@ module.exports = grammar({
       $.binary_expression
     ),
 
+    // TODO: This is not equivalent to the original grammar.
+    // Here are some expressions that should not parse but do:
+    // 1 > 2 > 3
+    // 1 +
     // [110 - 117]
     binary_expression: $ => choice(
       // conditional
-      prec.left(seq($._expression, '||', $._expression)),
-      prec.left(1, seq($._expression, '&&', $._expression)),
+      prec.left(seq($._expression, field('operator', '||'), $._expression)),
+      prec.left(1, seq($._expression, field('operator', '&&'), $._expression)),
       // relational
-      prec.left(2, seq($._expression, '=', $._expression)),
-      prec.left(2, seq($._expression, '!=', $._expression)),
-      prec.left(2, seq($._expression, '<', $._expression)),
-      prec.left(2, seq($._expression, '>', $._expression)),
-      prec.left(2, seq($._expression, '<=', $._expression)),
-      prec.left(2, seq($._expression, '>=', $._expression)),
-      prec.left(2, seq($._expression, 'IN'.toCaseInsensitiv(), $.expression_list)),
-      prec.left(2, seq($._expression, 'NOT'.toCaseInsensitiv(), 'IN'.toCaseInsensitiv(), $.expression_list)),
+      prec.left(2, seq($._expression, field('operator', '='), $._expression)),
+      prec.left(2, seq($._expression, field('operator', '!='), $._expression)),
+      prec.left(2, seq($._expression, field('operator', '<'), $._expression)),
+      prec.left(2, seq($._expression, field('operator', '>'), $._expression)),
+      prec.left(2, seq($._expression, field('operator', '<='), $._expression)),
+      prec.left(2, seq($._expression, field('operator', '>='), $._expression)),
+      prec.left(2, seq($._expression, field('operator', 'IN'.toCaseInsensitiv()), $.ExpressionList)),
+      prec.left(2, seq($._expression, field('operator', seq('NOT'.toCaseInsensitiv(), 'IN'.toCaseInsensitiv())), $.ExpressionList)),
       // numeric
-      prec.left(3, seq($._expression, '+', $._expression)),
-      prec.left(3, seq($._expression, '-', $._expression)),
-      prec.left(4, seq($._expression, '*', $._expression)),
-      prec.left(4, seq($._expression, '/', $._expression)),
+      prec.left(3, seq($._expression, field('operator', '+'), $._expression)),
+      prec.left(3, seq($._expression, field('operator', '-'), $._expression)),
+      prec.left(4, seq($._expression, field('operator', '*'), $._expression)),
+      prec.left(4, seq($._expression, field('operator', '/'), $._expression)),
     ),
 
     // [118]
@@ -986,34 +1029,34 @@ module.exports = grammar({
 
     // [119]
     _primary_expression: $ => choice(
-      $.bracketted_expression,
-      $._build_in_call,
+      $.BrackettedExpression,
+      $.BuildInCall,
       $._iri_or_function,
-      $.rdf_literal,
+      $.RdfLiteral,
       $._numeric_literal,
       $.boolean_literal,
       $.VAR
     ),
 
     // [120]
-    bracketted_expression: $ => seq(
+    BrackettedExpression: $ => seq(
       '(',
       $._expression,
       ')'
     ),
 
     // [121]
-    _build_in_call: $ => choice(
-      $.build_in_function,
-      $.aggregate,
-      $.exists_func,
-      $.not_exists_func,
-      $.substring_expression,
-      $.string_replace_expression,
-      $.regex_expression,
+    BuildInCall: $ => choice(
+      $._build_in_function,
+      $.Aggregate,
+      $.ExistsFunc,
+      $.NotExistsFunc,
+      $.SubstringExpression,
+      $.String_replace_expression,
+      $.RegexExpression,
     ),
 
-    build_in_function: $ => choice(
+    _build_in_function: $ => choice(
       $._nullary_build_in_function,
       $._unary_build_in_function,
       $._binary_build_in_function,
@@ -1023,7 +1066,7 @@ module.exports = grammar({
         field('arguments', seq('(', $.VAR, ')'))),
       seq(
         'BNODE'.toCaseInsensitiv(),
-        field('arguments', choice($.bracketted_expression, $.NIL))
+        field('arguments', choice($.BrackettedExpression, $.NIL))
       ),
       seq(
         'IF'.toCaseInsensitiv(),
@@ -1079,7 +1122,7 @@ module.exports = grammar({
           'isURI',
         ].map(i => i.toCaseInsensitiv())
       ),
-      field('arguments', $.bracketted_expression)
+      field('arguments', $.BrackettedExpression)
     ),
 
     _binary_build_in_function: $ => seq(
@@ -1106,11 +1149,11 @@ module.exports = grammar({
           'COALESCE',
         ].map(i => i.toCaseInsensitiv())
       ),
-      field('arguments', $.expression_list)
+      field('arguments', $.ExpressionList)
     ),
 
     // [122]
-    regex_expression: $ => seq(
+    RegexExpression: $ => seq(
       'REGEX'.toCaseInsensitiv(),
       seq('(',
         field('text', $._expression),
@@ -1125,7 +1168,7 @@ module.exports = grammar({
     ),
 
     // [123]
-    substring_expression: $ => seq(
+    SubstringExpression: $ => seq(
       'SUBSTR'.toCaseInsensitiv(),
       '(',
       $._expression,
@@ -1136,7 +1179,7 @@ module.exports = grammar({
     ),
 
     // [124]
-    string_replace_expression: $ => seq(
+    String_replace_expression: $ => seq(
       'REPLACE'.toCaseInsensitiv(),
       '(',
       $._expression,
@@ -1149,20 +1192,20 @@ module.exports = grammar({
     ),
 
     // [125]
-    exists_func: $ => seq(
+    ExistsFunc: $ => seq(
       'EXISTS'.toCaseInsensitiv(),
       $.GroupGraphPattern
     ),
 
     // [126]
-    not_exists_func: $ => seq(
+    NotExistsFunc: $ => seq(
       'NOT'.toCaseInsensitiv(),
       'EXISTS'.toCaseInsensitiv(),
       $.GroupGraphPattern
     ),
 
     // [127]
-    aggregate: $ => choice(
+    Aggregate: $ => choice(
       seq(
         'COUNT'.toCaseInsensitiv(),
         '(',
@@ -1179,10 +1222,10 @@ module.exports = grammar({
       seq('AVG'.toCaseInsensitiv(), '(', optional('DISTINCT'.toCaseInsensitiv()), $._expression, ')'),
       seq('SAMPLE'.toCaseInsensitiv(), '(', optional('DISTINCT'.toCaseInsensitiv()), $._expression, ')'),
       seq(
-        'GROUP_CONCAT', '(',
+        'GROUP_CONCAT'.toCaseInsensitiv(), '(',
         optional('DISTINCT'.toCaseInsensitiv()),
         $._expression,
-        optional(seq(';', 'SEPARATOR'.toCaseInsensitiv(), '=', $.string)),
+        optional(seq(';', 'SEPARATOR'.toCaseInsensitiv(), '=', $.String)),
         ')'
       ),
     ),
@@ -1190,12 +1233,12 @@ module.exports = grammar({
     // [128]
     _iri_or_function: $ => seq(choice(
       $._iri,
-      $.function_call
+      $.FunctionCall
     )),
 
     // [129]
-    rdf_literal: $ => seq(
-      field('value', $.string),
+    RdfLiteral: $ => seq(
+      field('value', $.String),
       optional(choice(
         $.LANGTAG,
         field('datatype', seq('^^', $._iri))
@@ -1216,7 +1259,7 @@ module.exports = grammar({
 
 
     // [135]
-    string: $ => choice(
+    String: $ => choice(
       $.STRING_LITERAL,
       $.STRING_LITERAL_LONG,
     ),
@@ -1224,13 +1267,13 @@ module.exports = grammar({
     // [136]
     _iri: $ => choice(
       $.IRIREF,
-      $.prefixed_name
+      $.PrefixedName
     ),
 
 
     // [137]
     // [141]
-    prefixed_name: $ => seq(
+    PrefixedName: $ => seq(
       $.PNAME_NS,
       optional($.PN_LOCAL)
     ),
@@ -1245,7 +1288,8 @@ module.exports = grammar({
     IRIREF: $ => /<([^<>"{}|^`\\\x00-\x20])*>/,
 
     // [140]
-    // TODO: This also accepts namespace :, but token.immediate does not work here.
+    // TODO: This also accepts "namespace :", needs to be fixed!
+    // NOTE: 'token.immediate' does not work here...
     PNAME_NS: $ => seq(
       optional($.PN_PREFIX),
       ':'

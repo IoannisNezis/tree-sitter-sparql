@@ -2,7 +2,7 @@
 Dataset clause
 ===============
 
-SELECT * 
+SELECT *
 
 FROM <www.example.com>
 FROM NAMED <www.example.com>
@@ -12,16 +12,16 @@ FROM NAMED <www.example.com>
 ---
 
 (unit
-  (select_query 
-    (select_clause) 
-    (dataset_clause
-      (default_graph_clause
-        source_selector: (iri_reference)))
-    (dataset_clause
-      (named_graph_clause
-        source_selector: (iri_reference)))
-    (where_clause
-      (group_graph_pattern))))
+  (SelectQuery
+    (SelectClause)
+    (DatasetClause
+      (DefaultGraphClause
+        source_selector: (IRIREF)))
+    (DatasetClause
+      (NamedGraphClause
+        source_selector: (IRIREF)))
+    (WhereClause
+      (GroupGraphPattern))))
 
 =============
 Group clause
@@ -34,14 +34,14 @@ GROUP BY ?a
 ---
 
 (unit
-  (select_query 
-    (select_clause)
-    (where_clause
-      (group_graph_pattern))
-    (solution_modifier
-      (group_clause
-        (group_condition
-          (var))))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern))
+    (SolutionModifier
+      (GroupClause
+        (GroupCondition
+          (VAR))))))
 
 ==============
 Having clause
@@ -54,15 +54,15 @@ HAVING ex:function ()
 ---
 
 (unit
-  (select_query 
-    (select_clause)
-    (where_clause (group_graph_pattern))
-    (solution_modifier
-      (having_clause
-        (having_condition
-          (function_call 
-            (prefixed_name (namespace (pn_prefix)) (pn_local))
-            (arg_list (nil)))))))) 
+  (SelectQuery
+    (SelectClause)
+    (WhereClause (GroupGraphPattern))
+    (SolutionModifier
+      (HavingClause
+        (HavingCondition
+          (FunctionCall
+            (PrefixedName (PNAME_NS (PN_PREFIX)) (PN_LOCAL))
+            (ArgList (NIL))))))))
 
 =============
 Order clause
@@ -75,15 +75,15 @@ ORDER BY ASC (?a)
 ---
 
 (unit
-  (select_query 
-    (select_clause)
-    (where_clause
-      (group_graph_pattern))
-    (solution_modifier
-      (order_clause 
-        (order_condition 
-          (bracketted_expression 
-            (var)))))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern))
+    (SolutionModifier
+      (OrderClause
+        (OrderCondition
+          (BrackettedExpression
+            (VAR)))))))
 
 ====================
 Limit offset clause
@@ -98,16 +98,16 @@ OFFSET 10
 ---
 
 (unit
-  (select_query 
-    (select_clause)
-    (where_clause
-      (group_graph_pattern))
-    (solution_modifier
-      (limit_offset_clauses
-        (limit_clause
-          (integer))
-        (offset_clause
-          (integer))))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern))
+    (SolutionModifier
+      (LimitOffsetClauses
+        (LimitClause
+          (INTEGER))
+        (OffsetClause
+          (INTEGER))))))
 
 ==============
 Values clause
@@ -122,13 +122,14 @@ VALUES (?a ?b) {
 ---
 
 (unit
-  (select_query 
-    (select_clause)
-    (where_clause
-      (group_graph_pattern))) 
-  (values_clause 
-    (data_block
-      (var)
-      (var)
-      (rdf_literal
-        (string)))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern)))
+  (ValuesClause
+    (DataBlock
+      (VAR)
+      (VAR)
+      (RdfLiteral
+        (String
+          (STRING_LITERAL))))))

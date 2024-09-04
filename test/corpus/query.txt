@@ -3,23 +3,23 @@ Prolouge
 =========
 
 BASE <https://www.example.com>
-PREFIX ex:<https://www.example.com>
+PREFIX ex: <https://www.example.com>
 
 SELECT * {}
 
 ---
 
 (unit
-  (prologue
-    (base_declaration
-      (iri_reference))
-    (prefix_declaration
-      (namespace (pn_prefix))
-      (iri_reference))) 
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern))))
+  (Prologue
+    (BaseDecl
+      (IRIREF))
+    (PrefixDecl
+      (PNAME_NS (PN_PREFIX))
+      (IRIREF)))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern))))
 
 ==============
 Select query
@@ -34,30 +34,31 @@ WHERE {
 ---
 
 (unit
-  (select_query 
-    (select_clause)
-    (where_clause
-      (group_graph_pattern))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern))))
 
 ================
 Subselect query
 ================
 
-SELECT * { 
+SELECT * {
   SELECT * {}
 }
 
 ---
 
 (unit
-  (select_query 
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (sub_select
-          (select_clause)
-          (where_clause 
-            (group_graph_pattern)))))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+          (SubSelect
+            (SelectClause)
+            (WhereClause
+              (GroupGraphPattern))))))))
 
 =========================
 Construct template query
@@ -75,27 +76,28 @@ WHERE {
 ---
 
 (unit
-  (construct_query
-   (construct_template 
-    (construct_triples 
-      (triples_same_subject
-        (var)
-        (property_list (property
-          (var)
-          (object_list (var)))))
-      (triples_same_subject
-        (var)
-        (property_list (property
-          (var)
-          (object_list (var)))))))
-    (where_clause
-      (group_graph_pattern
-        (triples_block
-         (triples_same_subject
-              subject: (var)
-              (property_list (property
-                (var)
-                (object_list (var))))))))))
+  (ConstructQuery
+   (ConstructTemplate
+    (ConstructTriples
+      (TriplesSameSubject
+        subject: (VAR)
+        (PropertyListNotEmpty
+          predicate: (VAR)
+          (ObjectList object: (VAR))))
+      (TriplesSameSubject
+        subject: (VAR)
+        (PropertyListNotEmpty
+          predicate: (VAR)
+          (ObjectList object: (VAR))))))
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+          (TriplesBlock
+           (TriplesSameSubjectPath
+                subject: (VAR)
+                (PropertyListPathNotEmpty
+                  predicate: (VAR)
+                  (ObjectList object: (VAR))))))))))
 
 =======================
 Construct triple query
@@ -108,13 +110,13 @@ CONSTRUCT WHERE {
 ---
 
 (unit
-  (construct_query
-    (triples_template
-      (triples_same_subject
-        (var)
-        (property_list (property
-          (var)
-          (object_list (var))))))))
+  (ConstructQuery
+    (TriplesTemplate
+      (TriplesSameSubject
+        (VAR)
+        (PropertyListNotEmpty
+          (VAR)
+          (ObjectList (VAR)))))))
 
 ===============
 Describe query
@@ -127,7 +129,7 @@ DESCRIBE
 ---
 
 (unit
-  (describe_query))
+  (DescribeQuery))
 
 ==========
 Ask query
@@ -140,9 +142,9 @@ WHERE {}
 ---
 
 (unit
-  (ask_query
-    (where_clause
-      (group_graph_pattern))))
+  (AskQuery
+    (WhereClause
+      (GroupGraphPattern))))
 
 ========
 Comment
@@ -158,10 +160,10 @@ SELECT * {}
 
 (unit
   (comment)
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern)))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern)))
   (comment))
 
 ===================
@@ -174,10 +176,21 @@ select DISTINCT * Where {
 
 ---
 
-(unit (select_query
-  (select_clause)
-  (where_clause (group_graph_pattern (triples_block (triples_same_subject
-    (var)
-    (property_list (property
-      (path_element (prefixed_name (namespace (pn_prefix) (MISSING ":"))))
-      (object_list (var))))))))))
+(unit (SelectQuery
+  (SelectClause)
+  (WhereClause (GroupGraphPattern
+        (GroupGraphPatternSub
+          (TriplesBlock
+            (TriplesSameSubjectPath
+              (VAR)
+              (PropertyListPathNotEmpty
+                  (Path
+                    (PathSequence
+                      (PathEltOrInverse
+                        (PathElt
+                          (PathPrimary
+                            (PrefixedName
+                              (PNAME_NS
+                                (PN_PREFIX)
+                                (MISSING ":"))))))))
+                  (ObjectList (VAR))))))))))

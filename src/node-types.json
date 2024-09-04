@@ -4,7 +4,43 @@
     "named": true,
     "subtypes": [
       {
-        "type": "aggregate",
+        "type": "BrackettedExpression",
+        "named": true
+      },
+      {
+        "type": "BuildInCall",
+        "named": true
+      },
+      {
+        "type": "DECIMAL",
+        "named": true
+      },
+      {
+        "type": "DOUBLE",
+        "named": true
+      },
+      {
+        "type": "FunctionCall",
+        "named": true
+      },
+      {
+        "type": "INTEGER",
+        "named": true
+      },
+      {
+        "type": "IRIREF",
+        "named": true
+      },
+      {
+        "type": "PrefixedName",
+        "named": true
+      },
+      {
+        "type": "RdfLiteral",
+        "named": true
+      },
+      {
+        "type": "VAR",
         "named": true
       },
       {
@@ -16,73 +52,13 @@
         "named": true
       },
       {
-        "type": "bracketted_expression",
-        "named": true
-      },
-      {
-        "type": "build_in_function",
-        "named": true
-      },
-      {
-        "type": "decimal",
-        "named": true
-      },
-      {
-        "type": "double",
-        "named": true
-      },
-      {
-        "type": "exists_func",
-        "named": true
-      },
-      {
-        "type": "function_call",
-        "named": true
-      },
-      {
-        "type": "integer",
-        "named": true
-      },
-      {
-        "type": "iri_reference",
-        "named": true
-      },
-      {
-        "type": "not_exists_func",
-        "named": true
-      },
-      {
-        "type": "prefixed_name",
-        "named": true
-      },
-      {
-        "type": "rdf_literal",
-        "named": true
-      },
-      {
-        "type": "regex_expression",
-        "named": true
-      },
-      {
-        "type": "string_replace_expression",
-        "named": true
-      },
-      {
-        "type": "substring_expression",
-        "named": true
-      },
-      {
         "type": "unary_expression",
-        "named": true
-      },
-      {
-        "type": "var",
         "named": true
       }
     ]
   },
   {
-    "type": "add",
+    "type": "Add",
     "named": true,
     "fields": {},
     "children": {
@@ -90,14 +66,14 @@
       "required": true,
       "types": [
         {
-          "type": "graph_or_default",
+          "type": "GraphOrDefault",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "aggregate",
+    "type": "Aggregate",
     "named": true,
     "fields": {},
     "children": {
@@ -105,18 +81,18 @@
       "required": false,
       "types": [
         {
-          "type": "_expression",
+          "type": "String",
           "named": true
         },
         {
-          "type": "string",
+          "type": "_expression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "arg_list",
+    "type": "ArgList",
     "named": true,
     "fields": {},
     "children": {
@@ -124,18 +100,18 @@
       "required": true,
       "types": [
         {
-          "type": "_expression",
+          "type": "NIL",
           "named": true
         },
         {
-          "type": "nil",
+          "type": "_expression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "ask_query",
+    "type": "AskQuery",
     "named": true,
     "fields": {},
     "children": {
@@ -143,22 +119,22 @@
       "required": true,
       "types": [
         {
-          "type": "dataset_clause",
+          "type": "DatasetClause",
           "named": true
         },
         {
-          "type": "solution_modifier",
+          "type": "SolutionModifier",
           "named": true
         },
         {
-          "type": "where_clause",
+          "type": "WhereClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "base_declaration",
+    "type": "BaseDecl",
     "named": true,
     "fields": {},
     "children": {
@@ -166,52 +142,14 @@
       "required": true,
       "types": [
         {
-          "type": "iri_reference",
+          "type": "IRIREF",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "binary_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "_expression",
-          "named": true
-        },
-        {
-          "type": "expression_list",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "binary_path",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "binary_path",
-          "named": true
-        },
-        {
-          "type": "path_element",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "bind",
+    "type": "Bind",
     "named": true,
     "fields": {
       "bound_variable": {
@@ -219,7 +157,7 @@
         "required": true,
         "types": [
           {
-            "type": "var",
+            "type": "VAR",
             "named": true
           }
         ]
@@ -237,7 +175,7 @@
     }
   },
   {
-    "type": "blank_node_property_list",
+    "type": "BlankNodePropertyListPath",
     "named": true,
     "fields": {},
     "children": {
@@ -245,19 +183,14 @@
       "required": true,
       "types": [
         {
-          "type": "property_list",
+          "type": "PropertyListPathNotEmpty",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "boolean_literal",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "bracketted_expression",
+    "type": "BrackettedExpression",
     "named": true,
     "fields": {},
     "children": {
@@ -272,12 +205,12 @@
     }
   },
   {
-    "type": "build_in_function",
+    "type": "BuildInCall",
     "named": true,
     "fields": {
       "arguments": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "(",
@@ -292,23 +225,53 @@
             "named": false
           },
           {
+            "type": "ExpressionList",
+            "named": true
+          },
+          {
+            "type": "NIL",
+            "named": true
+          },
+          {
             "type": "_expression",
-            "named": true
-          },
-          {
-            "type": "expression_list",
-            "named": true
-          },
-          {
-            "type": "nil",
             "named": true
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "Aggregate",
+          "named": true
+        },
+        {
+          "type": "ExistsFunc",
+          "named": true
+        },
+        {
+          "type": "NotExistsFunc",
+          "named": true
+        },
+        {
+          "type": "RegexExpression",
+          "named": true
+        },
+        {
+          "type": "String_replace_expression",
+          "named": true
+        },
+        {
+          "type": "SubstringExpression",
+          "named": true
+        }
+      ]
     }
   },
   {
-    "type": "clear",
+    "type": "Clear",
     "named": true,
     "fields": {},
     "children": {
@@ -316,14 +279,14 @@
       "required": true,
       "types": [
         {
-          "type": "graph_ref_all",
+          "type": "GraphRefAll",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "collection",
+    "type": "ConstructQuery",
     "named": true,
     "fields": {},
     "children": {
@@ -331,93 +294,30 @@
       "required": true,
       "types": [
         {
-          "type": "anon",
+          "type": "ConstructTemplate",
           "named": true
         },
         {
-          "type": "blank_node_label",
+          "type": "DatasetClause",
           "named": true
         },
         {
-          "type": "blank_node_property_list",
+          "type": "SolutionModifier",
           "named": true
         },
         {
-          "type": "boolean_literal",
+          "type": "TriplesTemplate",
           "named": true
         },
         {
-          "type": "collection",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "WhereClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "construct_query",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "construct_template",
-          "named": true
-        },
-        {
-          "type": "dataset_clause",
-          "named": true
-        },
-        {
-          "type": "solution_modifier",
-          "named": true
-        },
-        {
-          "type": "triples_template",
-          "named": true
-        },
-        {
-          "type": "where_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "construct_template",
+    "type": "ConstructTemplate",
     "named": true,
     "fields": {},
     "children": {
@@ -425,14 +325,14 @@
       "required": true,
       "types": [
         {
-          "type": "construct_triples",
+          "type": "ConstructTriples",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "construct_triples",
+    "type": "ConstructTriples",
     "named": true,
     "fields": {},
     "children": {
@@ -440,14 +340,14 @@
       "required": true,
       "types": [
         {
-          "type": "triples_same_subject",
+          "type": "TriplesSameSubject",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "copy",
+    "type": "Copy",
     "named": true,
     "fields": {},
     "children": {
@@ -455,14 +355,14 @@
       "required": true,
       "types": [
         {
-          "type": "graph_or_default",
+          "type": "GraphOrDefault",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "create",
+    "type": "Create",
     "named": true,
     "fields": {},
     "children": {
@@ -470,14 +370,14 @@
       "required": true,
       "types": [
         {
-          "type": "graph_ref",
+          "type": "GraphRef",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "data_block",
+    "type": "DataBlock",
     "named": true,
     "fields": {
       "bound_variable": {
@@ -485,7 +385,7 @@
         "required": false,
         "types": [
           {
-            "type": "var",
+            "type": "VAR",
             "named": true
           }
         ]
@@ -496,42 +396,42 @@
       "required": false,
       "types": [
         {
+          "type": "DECIMAL",
+          "named": true
+        },
+        {
+          "type": "DOUBLE",
+          "named": true
+        },
+        {
+          "type": "INTEGER",
+          "named": true
+        },
+        {
+          "type": "IRIREF",
+          "named": true
+        },
+        {
+          "type": "NIL",
+          "named": true
+        },
+        {
+          "type": "PrefixedName",
+          "named": true
+        },
+        {
+          "type": "RdfLiteral",
+          "named": true
+        },
+        {
           "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "dataset_clause",
+    "type": "DatasetClause",
     "named": true,
     "fields": {},
     "children": {
@@ -539,18 +439,18 @@
       "required": true,
       "types": [
         {
-          "type": "default_graph_clause",
+          "type": "DefaultGraphClause",
           "named": true
         },
         {
-          "type": "named_graph_clause",
+          "type": "NamedGraphClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "default_graph_clause",
+    "type": "DefaultGraphClause",
     "named": true,
     "fields": {
       "source_selector": {
@@ -558,11 +458,11 @@
         "required": true,
         "types": [
           {
-            "type": "iri_reference",
+            "type": "IRIREF",
             "named": true
           },
           {
-            "type": "prefixed_name",
+            "type": "PrefixedName",
             "named": true
           }
         ]
@@ -570,7 +470,7 @@
     }
   },
   {
-    "type": "delete_clause",
+    "type": "DeleteClause",
     "named": true,
     "fields": {},
     "children": {
@@ -578,14 +478,14 @@
       "required": true,
       "types": [
         {
-          "type": "quads",
+          "type": "QuadData",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "delete_data",
+    "type": "DeleteData",
     "named": true,
     "fields": {},
     "children": {
@@ -593,14 +493,14 @@
       "required": true,
       "types": [
         {
-          "type": "quads",
+          "type": "QuadData",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "delete_where",
+    "type": "DeleteWhere",
     "named": true,
     "fields": {},
     "children": {
@@ -608,14 +508,14 @@
       "required": true,
       "types": [
         {
-          "type": "quads",
+          "type": "QuadData",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "describe_query",
+    "type": "DescribeQuery",
     "named": true,
     "fields": {},
     "children": {
@@ -623,34 +523,34 @@
       "required": false,
       "types": [
         {
-          "type": "dataset_clause",
+          "type": "DatasetClause",
           "named": true
         },
         {
-          "type": "iri_reference",
+          "type": "IRIREF",
           "named": true
         },
         {
-          "type": "prefixed_name",
+          "type": "PrefixedName",
           "named": true
         },
         {
-          "type": "solution_modifier",
+          "type": "SolutionModifier",
           "named": true
         },
         {
-          "type": "var",
+          "type": "VAR",
           "named": true
         },
         {
-          "type": "where_clause",
+          "type": "WhereClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "drop",
+    "type": "Drop",
     "named": true,
     "fields": {},
     "children": {
@@ -658,14 +558,14 @@
       "required": true,
       "types": [
         {
-          "type": "graph_ref_all",
+          "type": "GraphRefAll",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "exists_func",
+    "type": "ExistsFunc",
     "named": true,
     "fields": {},
     "children": {
@@ -673,14 +573,14 @@
       "required": true,
       "types": [
         {
-          "type": "group_graph_pattern",
+          "type": "GroupGraphPattern",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "expression_list",
+    "type": "ExpressionList",
     "named": true,
     "fields": {},
     "children": {
@@ -688,18 +588,18 @@
       "required": true,
       "types": [
         {
-          "type": "_expression",
+          "type": "NIL",
           "named": true
         },
         {
-          "type": "nil",
+          "type": "_expression",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "filter",
+    "type": "Filter",
     "named": true,
     "fields": {},
     "children": {
@@ -707,46 +607,22 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
+          "type": "BrackettedExpression",
           "named": true
         },
         {
-          "type": "bracketted_expression",
+          "type": "BuildInCall",
           "named": true
         },
         {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
+          "type": "FunctionCall",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "function_call",
+    "type": "FunctionCall",
     "named": true,
     "fields": {
       "identifier": {
@@ -754,11 +630,11 @@
         "required": true,
         "types": [
           {
-            "type": "iri_reference",
+            "type": "IRIREF",
             "named": true
           },
           {
-            "type": "prefixed_name",
+            "type": "PrefixedName",
             "named": true
           }
         ]
@@ -769,14 +645,14 @@
       "required": true,
       "types": [
         {
-          "type": "arg_list",
+          "type": "ArgList",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "graph_graph_pattern",
+    "type": "GraphGraphPattern",
     "named": true,
     "fields": {},
     "children": {
@@ -784,26 +660,26 @@
       "required": true,
       "types": [
         {
-          "type": "group_graph_pattern",
+          "type": "GroupGraphPattern",
           "named": true
         },
         {
-          "type": "iri_reference",
+          "type": "IRIREF",
           "named": true
         },
         {
-          "type": "prefixed_name",
+          "type": "PrefixedName",
           "named": true
         },
         {
-          "type": "var",
+          "type": "VAR",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "graph_or_default",
+    "type": "GraphOrDefault",
     "named": true,
     "fields": {},
     "children": {
@@ -811,18 +687,18 @@
       "required": false,
       "types": [
         {
-          "type": "iri_reference",
+          "type": "IRIREF",
           "named": true
         },
         {
-          "type": "prefixed_name",
+          "type": "PrefixedName",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "graph_ref",
+    "type": "GraphRef",
     "named": true,
     "fields": {},
     "children": {
@@ -830,18 +706,18 @@
       "required": true,
       "types": [
         {
-          "type": "iri_reference",
+          "type": "IRIREF",
           "named": true
         },
         {
-          "type": "prefixed_name",
+          "type": "PrefixedName",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "graph_ref_all",
+    "type": "GraphRefAll",
     "named": true,
     "fields": {},
     "children": {
@@ -849,14 +725,14 @@
       "required": false,
       "types": [
         {
-          "type": "graph_ref",
+          "type": "GraphRef",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "group_clause",
+    "type": "GroupClause",
     "named": true,
     "fields": {},
     "children": {
@@ -864,14 +740,14 @@
       "required": true,
       "types": [
         {
-          "type": "group_condition",
+          "type": "GroupCondition",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "group_condition",
+    "type": "GroupCondition",
     "named": true,
     "fields": {
       "bound_variable": {
@@ -879,7 +755,7 @@
         "required": false,
         "types": [
           {
-            "type": "var",
+            "type": "VAR",
             "named": true
           }
         ]
@@ -897,58 +773,22 @@
     }
   },
   {
-    "type": "group_graph_pattern",
+    "type": "GroupGraphPattern",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "bind",
-          "named": true
-        },
-        {
-          "type": "filter",
-          "named": true
-        },
-        {
-          "type": "graph_graph_pattern",
-          "named": true
-        },
-        {
-          "type": "group_or_union_graph_pattern",
-          "named": true
-        },
-        {
-          "type": "inline_data",
-          "named": true
-        },
-        {
-          "type": "minus_graph_pattern",
-          "named": true
-        },
-        {
-          "type": "optional_graph_pattern",
-          "named": true
-        },
-        {
-          "type": "service_graph_pattern",
-          "named": true
-        },
-        {
-          "type": "sub_select",
-          "named": true
-        },
-        {
-          "type": "triples_block",
+          "type": "GroupGraphPatternSub",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "group_or_union_graph_pattern",
+    "type": "GroupGraphPatternSub",
     "named": true,
     "fields": {},
     "children": {
@@ -956,14 +796,50 @@
       "required": true,
       "types": [
         {
-          "type": "group_graph_pattern",
+          "type": "Bind",
+          "named": true
+        },
+        {
+          "type": "Filter",
+          "named": true
+        },
+        {
+          "type": "GraphGraphPattern",
+          "named": true
+        },
+        {
+          "type": "GroupOrUnionGraphPattern",
+          "named": true
+        },
+        {
+          "type": "InlineData",
+          "named": true
+        },
+        {
+          "type": "MinusGraphPattern",
+          "named": true
+        },
+        {
+          "type": "OptionalGraphPattern",
+          "named": true
+        },
+        {
+          "type": "ServiceGraphPattern",
+          "named": true
+        },
+        {
+          "type": "SubSelect",
+          "named": true
+        },
+        {
+          "type": "TriplesBlock",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "having_clause",
+    "type": "GroupOrUnionGraphPattern",
     "named": true,
     "fields": {},
     "children": {
@@ -971,126 +847,14 @@
       "required": true,
       "types": [
         {
-          "type": "having_condition",
+          "type": "GroupGraphPattern",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "having_condition",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "inline_data",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "data_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "insert_clause",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "quads",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "insert_data",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "quads",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "iri_reference",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "limit_clause",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "integer",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "limit_offset_clauses",
+    "type": "HavingClause",
     "named": true,
     "fields": {},
     "children": {
@@ -1098,41 +862,14 @@
       "required": true,
       "types": [
         {
-          "type": "limit_clause",
-          "named": true
-        },
-        {
-          "type": "offset_clause",
+          "type": "HavingCondition",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "load",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "graph_ref",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "minus_graph_pattern",
+    "type": "HavingCondition",
     "named": true,
     "fields": {},
     "children": {
@@ -1140,14 +877,82 @@
       "required": true,
       "types": [
         {
-          "type": "group_graph_pattern",
+          "type": "BrackettedExpression",
+          "named": true
+        },
+        {
+          "type": "BuildInCall",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "modify",
+    "type": "InlineData",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "DataBlock",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "InsertClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "QuadData",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "InsertData",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "QuadData",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "LimitClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "INTEGER",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "LimitOffsetClauses",
     "named": true,
     "fields": {},
     "children": {
@@ -1155,34 +960,18 @@
       "required": true,
       "types": [
         {
-          "type": "delete_clause",
+          "type": "LimitClause",
           "named": true
         },
         {
-          "type": "group_graph_pattern",
-          "named": true
-        },
-        {
-          "type": "insert_clause",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "using_clause",
+          "type": "OffsetClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "move",
+    "type": "Load",
     "named": true,
     "fields": {},
     "children": {
@@ -1190,14 +979,87 @@
       "required": true,
       "types": [
         {
-          "type": "graph_or_default",
+          "type": "GraphRef",
+          "named": true
+        },
+        {
+          "type": "IRIREF",
+          "named": true
+        },
+        {
+          "type": "PrefixedName",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "named_graph_clause",
+    "type": "MinusGraphPattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "GroupGraphPattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Modify",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "DeleteClause",
+          "named": true
+        },
+        {
+          "type": "GroupGraphPattern",
+          "named": true
+        },
+        {
+          "type": "IRIREF",
+          "named": true
+        },
+        {
+          "type": "InsertClause",
+          "named": true
+        },
+        {
+          "type": "PrefixedName",
+          "named": true
+        },
+        {
+          "type": "UsingClause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Move",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "GraphOrDefault",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "NamedGraphClause",
     "named": true,
     "fields": {
       "source_selector": {
@@ -1205,11 +1067,11 @@
         "required": true,
         "types": [
           {
-            "type": "iri_reference",
+            "type": "IRIREF",
             "named": true
           },
           {
-            "type": "prefixed_name",
+            "type": "PrefixedName",
             "named": true
           }
         ]
@@ -1217,7 +1079,158 @@
     }
   },
   {
-    "type": "namespace",
+    "type": "NotExistsFunc",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "GroupGraphPattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ObjectList",
+    "named": true,
+    "fields": {
+      "object": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "ANON",
+            "named": true
+          },
+          {
+            "type": "BLANK_NODE_LABEL",
+            "named": true
+          },
+          {
+            "type": "BlankNodePropertyListPath",
+            "named": true
+          },
+          {
+            "type": "DECIMAL",
+            "named": true
+          },
+          {
+            "type": "DOUBLE",
+            "named": true
+          },
+          {
+            "type": "INTEGER",
+            "named": true
+          },
+          {
+            "type": "IRIREF",
+            "named": true
+          },
+          {
+            "type": "NIL",
+            "named": true
+          },
+          {
+            "type": "PrefixedName",
+            "named": true
+          },
+          {
+            "type": "RdfLiteral",
+            "named": true
+          },
+          {
+            "type": "VAR",
+            "named": true
+          },
+          {
+            "type": "boolean_literal",
+            "named": true
+          },
+          {
+            "type": "collection",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "OffsetClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "INTEGER",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "OptionalGraphPattern",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "GroupGraphPattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "OrderClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "OrderCondition",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "OrderCondition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "BrackettedExpression",
+          "named": true
+        },
+        {
+          "type": "BuildInCall",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "VAR",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "PNAME_NS",
     "named": true,
     "fields": {},
     "children": {
@@ -1225,29 +1238,14 @@
       "required": false,
       "types": [
         {
-          "type": "pn_prefix",
+          "type": "PN_PREFIX",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "not_exists_func",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "group_graph_pattern",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "object_list",
+    "type": "Path",
     "named": true,
     "fields": {},
     "children": {
@@ -1255,92 +1253,14 @@
       "required": true,
       "types": [
         {
-          "type": "anon",
-          "named": true
-        },
-        {
-          "type": "blank_node_label",
-          "named": true
-        },
-        {
-          "type": "blank_node_property_list",
-          "named": true
-        },
-        {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "collection",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "PathSequence",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "offset_clause",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "integer",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "optional_graph_pattern",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "group_graph_pattern",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "order_clause",
+    "type": "PathElt",
     "named": true,
     "fields": {},
     "children": {
@@ -1348,14 +1268,18 @@
       "required": true,
       "types": [
         {
-          "type": "order_condition",
+          "type": "PathMod",
+          "named": true
+        },
+        {
+          "type": "PathPrimary",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "order_condition",
+    "type": "PathEltOrInverse",
     "named": true,
     "fields": {},
     "children": {
@@ -1363,94 +1287,19 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "PathElt",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "path_element",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "binary_path",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "path_element",
-          "named": true
-        },
-        {
-          "type": "path_inverse",
-          "named": true
-        },
-        {
-          "type": "path_mod",
-          "named": true
-        },
-        {
-          "type": "path_negated_property_set",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "path_inverse",
+    "type": "PathMod",
     "named": true,
     "fields": {}
   },
   {
-    "type": "path_negated_property_set",
+    "type": "PathNegatedPropertySet",
     "named": true,
     "fields": {},
     "children": {
@@ -1458,14 +1307,14 @@
       "required": false,
       "types": [
         {
-          "type": "path_one_in_property_set",
+          "type": "PathOneInPropertySet",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "path_one_in_property_set",
+    "type": "PathOneInPropertySet",
     "named": true,
     "fields": {},
     "children": {
@@ -1473,144 +1322,45 @@
       "required": false,
       "types": [
         {
-          "type": "iri_reference",
+          "type": "IRIREF",
           "named": true
         },
         {
-          "type": "prefixed_name",
+          "type": "PrefixedName",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "prefix_declaration",
+    "type": "PathPrimary",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "namespace",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "prefixed_name",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "namespace",
-          "named": true
-        },
-        {
-          "type": "pn_local",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "prologue",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "base_declaration",
-          "named": true
-        },
-        {
-          "type": "prefix_declaration",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "property",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "binary_path",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "object_list",
-          "named": true
-        },
-        {
-          "type": "path_element",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "var",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "property_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "property",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "quads",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "quads_not_triples",
+          "type": "IRIREF",
           "named": true
         },
         {
-          "type": "triples_template",
+          "type": "Path",
+          "named": true
+        },
+        {
+          "type": "PathNegatedPropertySet",
+          "named": true
+        },
+        {
+          "type": "PrefixedName",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "quads_not_triples",
+    "type": "PathSequence",
     "named": true,
     "fields": {},
     "children": {
@@ -1618,26 +1368,200 @@
       "required": true,
       "types": [
         {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "triples_template",
-          "named": true
-        },
-        {
-          "type": "var",
+          "type": "PathEltOrInverse",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "rdf_literal",
+    "type": "PrefixDecl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "IRIREF",
+          "named": true
+        },
+        {
+          "type": "PNAME_NS",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "PrefixedName",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "PNAME_NS",
+          "named": true
+        },
+        {
+          "type": "PN_LOCAL",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Prologue",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BaseDecl",
+          "named": true
+        },
+        {
+          "type": "PrefixDecl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "PropertyListNotEmpty",
+    "named": true,
+    "fields": {
+      "predicate": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "IRIREF",
+            "named": true
+          },
+          {
+            "type": "PrefixedName",
+            "named": true
+          },
+          {
+            "type": "VAR",
+            "named": true
+          },
+          {
+            "type": "a",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ObjectList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "PropertyListPathNotEmpty",
+    "named": true,
+    "fields": {
+      "predicate": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "Path",
+            "named": true
+          },
+          {
+            "type": "VAR",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ObjectList",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "QuadData",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "Quads",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Quads",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "QuadsNotTriples",
+          "named": true
+        },
+        {
+          "type": "TriplesTemplate",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "QuadsNotTriples",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "IRIREF",
+          "named": true
+        },
+        {
+          "type": "PrefixedName",
+          "named": true
+        },
+        {
+          "type": "TriplesTemplateBlock",
+          "named": true
+        },
+        {
+          "type": "VAR",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "RdfLiteral",
     "named": true,
     "fields": {
       "datatype": {
@@ -1645,16 +1569,16 @@
         "required": false,
         "types": [
           {
+            "type": "IRIREF",
+            "named": true
+          },
+          {
+            "type": "PrefixedName",
+            "named": true
+          },
+          {
             "type": "^^",
             "named": false
-          },
-          {
-            "type": "iri_reference",
-            "named": true
-          },
-          {
-            "type": "prefixed_name",
-            "named": true
           }
         ]
       },
@@ -1663,7 +1587,7 @@
         "required": true,
         "types": [
           {
-            "type": "string",
+            "type": "String",
             "named": true
           }
         ]
@@ -1674,14 +1598,14 @@
       "required": false,
       "types": [
         {
-          "type": "lang_tag",
+          "type": "LANGTAG",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "regex_expression",
+    "type": "RegexExpression",
     "named": true,
     "fields": {
       "flag": {
@@ -1717,7 +1641,17 @@
     }
   },
   {
-    "type": "select_clause",
+    "type": "STRING_LITERAL",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "STRING_LITERAL_LONG",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "SelectClause",
     "named": true,
     "fields": {
       "bound_variable": {
@@ -1725,7 +1659,7 @@
         "required": false,
         "types": [
           {
-            "type": "var",
+            "type": "VAR",
             "named": true
           }
         ]
@@ -1743,7 +1677,7 @@
     }
   },
   {
-    "type": "select_query",
+    "type": "SelectQuery",
     "named": true,
     "fields": {},
     "children": {
@@ -1751,26 +1685,26 @@
       "required": true,
       "types": [
         {
-          "type": "dataset_clause",
+          "type": "DatasetClause",
           "named": true
         },
         {
-          "type": "select_clause",
+          "type": "SelectClause",
           "named": true
         },
         {
-          "type": "solution_modifier",
+          "type": "SolutionModifier",
           "named": true
         },
         {
-          "type": "where_clause",
+          "type": "WhereClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "service_graph_pattern",
+    "type": "ServiceGraphPattern",
     "named": true,
     "fields": {},
     "children": {
@@ -1778,26 +1712,26 @@
       "required": true,
       "types": [
         {
-          "type": "group_graph_pattern",
+          "type": "GroupGraphPattern",
           "named": true
         },
         {
-          "type": "iri_reference",
+          "type": "IRIREF",
           "named": true
         },
         {
-          "type": "prefixed_name",
+          "type": "PrefixedName",
           "named": true
         },
         {
-          "type": "var",
+          "type": "VAR",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "solution_modifier",
+    "type": "SolutionModifier",
     "named": true,
     "fields": {},
     "children": {
@@ -1805,83 +1739,45 @@
       "required": true,
       "types": [
         {
-          "type": "group_clause",
+          "type": "GroupClause",
           "named": true
         },
         {
-          "type": "having_clause",
+          "type": "HavingClause",
           "named": true
         },
         {
-          "type": "limit_offset_clauses",
+          "type": "LimitOffsetClauses",
           "named": true
         },
         {
-          "type": "order_clause",
+          "type": "OrderClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "string",
+    "type": "String",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "echar",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "string_replace_expression",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "_expression",
+          "type": "STRING_LITERAL",
+          "named": true
+        },
+        {
+          "type": "STRING_LITERAL_LONG",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "sub_select",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "select_clause",
-          "named": true
-        },
-        {
-          "type": "solution_modifier",
-          "named": true
-        },
-        {
-          "type": "values_clause",
-          "named": true
-        },
-        {
-          "type": "where_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "substring_expression",
+    "type": "String_replace_expression",
     "named": true,
     "fields": {},
     "children": {
@@ -1896,7 +1792,7 @@
     }
   },
   {
-    "type": "triples_block",
+    "type": "SubSelect",
     "named": true,
     "fields": {},
     "children": {
@@ -1904,14 +1800,56 @@
       "required": true,
       "types": [
         {
-          "type": "triples_same_subject",
+          "type": "SelectClause",
+          "named": true
+        },
+        {
+          "type": "SolutionModifier",
+          "named": true
+        },
+        {
+          "type": "ValuesClause",
+          "named": true
+        },
+        {
+          "type": "WhereClause",
           "named": true
         }
       ]
     }
   },
   {
-    "type": "triples_same_subject",
+    "type": "SubstringExpression",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TriplesBlock",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "TriplesSameSubjectPath",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TriplesSameSubject",
     "named": true,
     "fields": {
       "subject": {
@@ -1919,47 +1857,47 @@
         "required": false,
         "types": [
           {
-            "type": "anon",
+            "type": "ANON",
             "named": true
           },
           {
-            "type": "blank_node_label",
+            "type": "BLANK_NODE_LABEL",
+            "named": true
+          },
+          {
+            "type": "DECIMAL",
+            "named": true
+          },
+          {
+            "type": "DOUBLE",
+            "named": true
+          },
+          {
+            "type": "INTEGER",
+            "named": true
+          },
+          {
+            "type": "IRIREF",
+            "named": true
+          },
+          {
+            "type": "NIL",
+            "named": true
+          },
+          {
+            "type": "PrefixedName",
+            "named": true
+          },
+          {
+            "type": "RdfLiteral",
+            "named": true
+          },
+          {
+            "type": "VAR",
             "named": true
           },
           {
             "type": "boolean_literal",
-            "named": true
-          },
-          {
-            "type": "decimal",
-            "named": true
-          },
-          {
-            "type": "double",
-            "named": true
-          },
-          {
-            "type": "integer",
-            "named": true
-          },
-          {
-            "type": "iri_reference",
-            "named": true
-          },
-          {
-            "type": "nil",
-            "named": true
-          },
-          {
-            "type": "prefixed_name",
-            "named": true
-          },
-          {
-            "type": "rdf_literal",
-            "named": true
-          },
-          {
-            "type": "var",
             "named": true
           }
         ]
@@ -1970,15 +1908,373 @@
       "required": true,
       "types": [
         {
-          "type": "anon",
+          "type": "BlankNodePropertyListPath",
           "named": true
         },
         {
-          "type": "blank_node_label",
+          "type": "PropertyListNotEmpty",
           "named": true
         },
         {
-          "type": "blank_node_property_list",
+          "type": "collection",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TriplesSameSubjectPath",
+    "named": true,
+    "fields": {
+      "subject": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "ANON",
+            "named": true
+          },
+          {
+            "type": "BLANK_NODE_LABEL",
+            "named": true
+          },
+          {
+            "type": "DECIMAL",
+            "named": true
+          },
+          {
+            "type": "DOUBLE",
+            "named": true
+          },
+          {
+            "type": "INTEGER",
+            "named": true
+          },
+          {
+            "type": "IRIREF",
+            "named": true
+          },
+          {
+            "type": "NIL",
+            "named": true
+          },
+          {
+            "type": "PrefixedName",
+            "named": true
+          },
+          {
+            "type": "RdfLiteral",
+            "named": true
+          },
+          {
+            "type": "VAR",
+            "named": true
+          },
+          {
+            "type": "boolean_literal",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "BlankNodePropertyListPath",
+          "named": true
+        },
+        {
+          "type": "PropertyListPathNotEmpty",
+          "named": true
+        },
+        {
+          "type": "collection",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TriplesTemplate",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "TriplesSameSubject",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "TriplesTemplateBlock",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "TriplesTemplate",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Update",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "Add",
+          "named": true
+        },
+        {
+          "type": "Clear",
+          "named": true
+        },
+        {
+          "type": "Copy",
+          "named": true
+        },
+        {
+          "type": "Create",
+          "named": true
+        },
+        {
+          "type": "DeleteData",
+          "named": true
+        },
+        {
+          "type": "DeleteWhere",
+          "named": true
+        },
+        {
+          "type": "Drop",
+          "named": true
+        },
+        {
+          "type": "InsertData",
+          "named": true
+        },
+        {
+          "type": "Load",
+          "named": true
+        },
+        {
+          "type": "Modify",
+          "named": true
+        },
+        {
+          "type": "Move",
+          "named": true
+        },
+        {
+          "type": "Prologue",
+          "named": true
+        },
+        {
+          "type": "Update",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "UsingClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "IRIREF",
+          "named": true
+        },
+        {
+          "type": "PrefixedName",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "ValuesClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "DataBlock",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "WhereClause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "GroupGraphPattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "binary_expression",
+    "named": true,
+    "fields": {
+      "operator": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "!=",
+            "named": false
+          },
+          {
+            "type": "&&",
+            "named": false
+          },
+          {
+            "type": "*",
+            "named": false
+          },
+          {
+            "type": "+",
+            "named": false
+          },
+          {
+            "type": "-",
+            "named": false
+          },
+          {
+            "type": "/",
+            "named": false
+          },
+          {
+            "type": "<",
+            "named": false
+          },
+          {
+            "type": "<=",
+            "named": false
+          },
+          {
+            "type": "=",
+            "named": false
+          },
+          {
+            "type": ">",
+            "named": false
+          },
+          {
+            "type": ">=",
+            "named": false
+          },
+          {
+            "type": "IN",
+            "named": false
+          },
+          {
+            "type": "NOT",
+            "named": false
+          },
+          {
+            "type": "||",
+            "named": false
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ExpressionList",
+          "named": true
+        },
+        {
+          "type": "_expression",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "boolean_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "collection",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "ANON",
+          "named": true
+        },
+        {
+          "type": "BLANK_NODE_LABEL",
+          "named": true
+        },
+        {
+          "type": "BlankNodePropertyListPath",
+          "named": true
+        },
+        {
+          "type": "DECIMAL",
+          "named": true
+        },
+        {
+          "type": "DOUBLE",
+          "named": true
+        },
+        {
+          "type": "INTEGER",
+          "named": true
+        },
+        {
+          "type": "IRIREF",
+          "named": true
+        },
+        {
+          "type": "NIL",
+          "named": true
+        },
+        {
+          "type": "PrefixedName",
+          "named": true
+        },
+        {
+          "type": "RdfLiteral",
+          "named": true
+        },
+        {
+          "type": "VAR",
           "named": true
         },
         {
@@ -1987,57 +2283,6 @@
         },
         {
           "type": "collection",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "nil",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "property_list",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "var",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "triples_template",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "triples_same_subject",
           "named": true
         }
       ]
@@ -2052,71 +2297,47 @@
       "required": true,
       "types": [
         {
-          "type": "aggregate",
+          "type": "BrackettedExpression",
+          "named": true
+        },
+        {
+          "type": "BuildInCall",
+          "named": true
+        },
+        {
+          "type": "DECIMAL",
+          "named": true
+        },
+        {
+          "type": "DOUBLE",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "INTEGER",
+          "named": true
+        },
+        {
+          "type": "IRIREF",
+          "named": true
+        },
+        {
+          "type": "PrefixedName",
+          "named": true
+        },
+        {
+          "type": "RdfLiteral",
+          "named": true
+        },
+        {
+          "type": "VAR",
           "named": true
         },
         {
           "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "bracketted_expression",
-          "named": true
-        },
-        {
-          "type": "build_in_function",
-          "named": true
-        },
-        {
-          "type": "decimal",
-          "named": true
-        },
-        {
-          "type": "double",
-          "named": true
-        },
-        {
-          "type": "exists_func",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "integer",
-          "named": true
-        },
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "not_exists_func",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        },
-        {
-          "type": "rdf_literal",
-          "named": true
-        },
-        {
-          "type": "regex_expression",
-          "named": true
-        },
-        {
-          "type": "string_replace_expression",
-          "named": true
-        },
-        {
-          "type": "substring_expression",
-          "named": true
-        },
-        {
-          "type": "var",
           "named": true
         }
       ]
@@ -2131,120 +2352,31 @@
       "required": false,
       "types": [
         {
-          "type": "add",
+          "type": "AskQuery",
           "named": true
         },
         {
-          "type": "ask_query",
+          "type": "ConstructQuery",
           "named": true
         },
         {
-          "type": "clear",
+          "type": "DescribeQuery",
           "named": true
         },
         {
-          "type": "construct_query",
+          "type": "Prologue",
           "named": true
         },
         {
-          "type": "copy",
+          "type": "SelectQuery",
           "named": true
         },
         {
-          "type": "create",
+          "type": "Update",
           "named": true
         },
         {
-          "type": "delete_data",
-          "named": true
-        },
-        {
-          "type": "delete_where",
-          "named": true
-        },
-        {
-          "type": "describe_query",
-          "named": true
-        },
-        {
-          "type": "drop",
-          "named": true
-        },
-        {
-          "type": "insert_data",
-          "named": true
-        },
-        {
-          "type": "load",
-          "named": true
-        },
-        {
-          "type": "modify",
-          "named": true
-        },
-        {
-          "type": "move",
-          "named": true
-        },
-        {
-          "type": "prologue",
-          "named": true
-        },
-        {
-          "type": "select_query",
-          "named": true
-        },
-        {
-          "type": "values_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "using_clause",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "iri_reference",
-          "named": true
-        },
-        {
-          "type": "prefixed_name",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "values_clause",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "data_block",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "where_clause",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "group_graph_pattern",
+          "type": "ValuesClause",
           "named": true
         }
       ]
@@ -2260,10 +2392,6 @@
   },
   {
     "type": "\"",
-    "named": false
-  },
-  {
-    "type": "\"\"",
     "named": false
   },
   {
@@ -2347,6 +2475,10 @@
     "named": false
   },
   {
+    "type": "?",
+    "named": false
+  },
+  {
     "type": "ABS",
     "named": false
   },
@@ -2357,6 +2489,10 @@
   {
     "type": "ALL",
     "named": false
+  },
+  {
+    "type": "ANON",
+    "named": true
   },
   {
     "type": "AS",
@@ -2381,6 +2517,10 @@
   {
     "type": "BIND",
     "named": false
+  },
+  {
+    "type": "BLANK_NODE_LABEL",
+    "named": true
   },
   {
     "type": "BNODE",
@@ -2431,6 +2571,10 @@
     "named": false
   },
   {
+    "type": "DATA",
+    "named": false
+  },
+  {
     "type": "DATATYPE",
     "named": false
   },
@@ -2439,19 +2583,15 @@
     "named": false
   },
   {
+    "type": "DECIMAL",
+    "named": true
+  },
+  {
     "type": "DEFAULT",
     "named": false
   },
   {
     "type": "DELETE",
-    "named": false
-  },
-  {
-    "type": "DELETE DATA",
-    "named": false
-  },
-  {
-    "type": "DELETE WHERE",
     "named": false
   },
   {
@@ -2465,6 +2605,10 @@
   {
     "type": "DISTINCT",
     "named": false
+  },
+  {
+    "type": "DOUBLE",
+    "named": true
   },
   {
     "type": "DROP",
@@ -2523,8 +2667,8 @@
     "named": false
   },
   {
-    "type": "INSERT DATA",
-    "named": false
+    "type": "INTEGER",
+    "named": true
   },
   {
     "type": "INTO",
@@ -2535,12 +2679,20 @@
     "named": false
   },
   {
+    "type": "IRIREF",
+    "named": true
+  },
+  {
     "type": "LANG",
     "named": false
   },
   {
     "type": "LANGMATCHES",
     "named": false
+  },
+  {
+    "type": "LANGTAG",
+    "named": true
   },
   {
     "type": "LCASE",
@@ -2587,6 +2739,10 @@
     "named": false
   },
   {
+    "type": "NIL",
+    "named": true
+  },
+  {
     "type": "NOT",
     "named": false
   },
@@ -2605,6 +2761,14 @@
   {
     "type": "ORDER",
     "named": false
+  },
+  {
+    "type": "PN_LOCAL",
+    "named": true
+  },
+  {
+    "type": "PN_PREFIX",
+    "named": true
   },
   {
     "type": "PREFIX",
@@ -2755,6 +2919,10 @@
     "named": false
   },
   {
+    "type": "VAR",
+    "named": true
+  },
+  {
     "type": "WHERE",
     "named": false
   },
@@ -2787,36 +2955,12 @@
     "named": false
   },
   {
-    "type": "anon",
-    "named": true
-  },
-  {
-    "type": "blank_node_label",
-    "named": true
-  },
-  {
     "type": "comment",
-    "named": true
-  },
-  {
-    "type": "decimal",
-    "named": true
-  },
-  {
-    "type": "double",
-    "named": true
-  },
-  {
-    "type": "echar",
     "named": true
   },
   {
     "type": "false",
     "named": false
-  },
-  {
-    "type": "integer",
-    "named": true
   },
   {
     "type": "isBLANK",
@@ -2839,36 +2983,12 @@
     "named": false
   },
   {
-    "type": "lang_tag",
-    "named": true
-  },
-  {
-    "type": "nil",
-    "named": true
-  },
-  {
-    "type": "path_mod",
-    "named": true
-  },
-  {
-    "type": "pn_local",
-    "named": true
-  },
-  {
-    "type": "pn_prefix",
-    "named": true
-  },
-  {
     "type": "sameTerm",
     "named": false
   },
   {
     "type": "true",
     "named": false
-  },
-  {
-    "type": "var",
-    "named": true
   },
   {
     "type": "{",

@@ -9,15 +9,16 @@ SELECT * {
 ---
 
 (unit
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (filter
-          (regex_expression
-            text: (var)
-            pattern: (rdf_literal value: (string)) 
-            flag: (rdf_literal value: (string))))))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern (GroupGraphPatternSub
+        (Filter
+          (BuildInCall
+            (RegexExpression
+              text: (VAR)
+              pattern: (RdfLiteral value: (String (STRING_LITERAL)))
+              flag: (RdfLiteral value: (String (STRING_LITERAL)))))))))))
 
 ====================
 Unary built in call
@@ -30,10 +31,10 @@ SELECT (lang('foo') AS ?a) {
 
 ---
 
-(unit (select_query
-  (select_clause
-    (build_in_function arguments: (bracketted_expression (rdf_literal value: (string))))
-    bound_variable: (var))
-  (where_clause (group_graph_pattern
-      (filter (bracketted_expression (build_in_function arguments: (var))))
-      (filter (bracketted_expression (build_in_function arguments: (nil))))))))
+(unit (SelectQuery
+  (SelectClause
+    (BuildInCall arguments: (BrackettedExpression (RdfLiteral value: (String (STRING_LITERAL)))))
+    bound_variable: (VAR))
+  (WhereClause (GroupGraphPattern (GroupGraphPatternSub
+      (Filter (BrackettedExpression (BuildInCall arguments: (VAR))))
+      (Filter (BrackettedExpression (BuildInCall arguments: (NIL)))))))))

@@ -9,19 +9,27 @@ SELECT * {
 ---
 
 (unit
-  (select_query
-    (select_clause) 
-    (where_clause
-      (group_graph_pattern
-        (triples_block 
-          (triples_same_subject 
-            (blank_node_label) 
-            (property_list 
-              (property
-                (path_element
-                  (prefixed_name (namespace) (pn_local)))
-                (object_list
-                  (prefixed_name (namespace) (pn_local)))))))))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+          (TriplesBlock
+            (TriplesSameSubjectPath
+              (BLANK_NODE_LABEL)
+              (PropertyListPathNotEmpty
+                (Path
+                  (PathSequence
+                    (PathEltOrInverse
+                      (PathElt
+                        (PathPrimary
+                          (PrefixedName
+                            (PNAME_NS)
+                            (PN_LOCAL)))))))
+                  (ObjectList
+                    (PrefixedName
+                      (PNAME_NS)
+                      (PN_LOCAL)))))))))))
 
 =====================
 Group graph patterns
@@ -36,38 +44,41 @@ SELECT * {
 
 ---
 
-(unit 
-  (select_query 
-    (select_clause) 
-    (where_clause 
-      (group_graph_pattern
-        (triples_block
-          (triples_same_subject
-            (var)
-            (property_list (property
-              (var) 
-              (object_list (var)))))
-          (triples_same_subject
-            (var)
-            (property_list (property
-              (var)
-              (object_list (var))))))
-        (group_or_union_graph_pattern
-          (group_graph_pattern
-            (triples_block
-              (triples_same_subject
-                (var) 
-                (property_list (property
-                  (var)
-                  (object_list (var))))))))
-        (group_or_union_graph_pattern
-          (group_graph_pattern
-            (triples_block
-              (triples_same_subject
-                (var)
-                (property_list (property
-                  (var)
-                  (object_list (var)))))))))))) 
+(unit
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+          (TriplesBlock
+            (TriplesSameSubjectPath
+              (VAR)
+              (PropertyListPathNotEmpty
+                (VAR)
+                (ObjectList (VAR))))
+            (TriplesSameSubjectPath
+              (VAR)
+              (PropertyListPathNotEmpty
+                (VAR)
+                (ObjectList (VAR)))))
+          (GroupOrUnionGraphPattern
+            (GroupGraphPattern
+              (GroupGraphPatternSub
+                (TriplesBlock
+                  (TriplesSameSubjectPath
+                    (VAR)
+                    (PropertyListPathNotEmpty
+                      (VAR)
+                      (ObjectList (VAR))))))))
+          (GroupOrUnionGraphPattern
+            (GroupGraphPattern
+              (GroupGraphPatternSub
+                (TriplesBlock
+                  (TriplesSameSubjectPath
+                    (VAR)
+                    (PropertyListPathNotEmpty
+                      (VAR)
+                      (ObjectList (VAR)))))))))))))
 
 ====================
 Empty group pattern
@@ -78,9 +89,9 @@ SELECT * {}
 ---
 
 (unit
-  (select_query
-    (select_clause)
-    (where_clause (group_graph_pattern))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause (GroupGraphPattern))))
 
 =======
 Filter
@@ -94,21 +105,22 @@ SELECT * {
 ---
 
 (unit
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (triples_block
-          (triples_same_subject
-            (var)
-            (property_list (property
-              (var)
-              (object_list (var))))))
-          (filter
-            (bracketted_expression
-              (binary_expression
-                (var)
-                (integer))))))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+          (TriplesBlock
+            (TriplesSameSubjectPath
+              (VAR)
+              (PropertyListPathNotEmpty
+                (VAR)
+                (ObjectList (VAR)))))
+            (Filter
+              (BrackettedExpression
+                (binary_expression
+                  (VAR)
+                  (INTEGER)))))))))
 
 =================
 Optional pattern
@@ -122,28 +134,31 @@ SELECT * {
 
 ---
 
-(unit 
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (group_or_union_graph_pattern (group_graph_pattern))
-        (optional_graph_pattern
-          (group_graph_pattern
-            (triples_block
-              (triples_same_subject
-                (var)
-                (property_list (property
-                  (var)
-                  (object_list (var))))))))
-        (optional_graph_pattern
-          (group_graph_pattern
-            (triples_block
-              (triples_same_subject
-                (var)
-                (property_list (property
-                  (var)
-                  (object_list (var))))))))))))
+(unit
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+          (GroupOrUnionGraphPattern (GroupGraphPattern))
+          (OptionalGraphPattern
+            (GroupGraphPattern
+              (GroupGraphPatternSub
+                (TriplesBlock
+                  (TriplesSameSubjectPath
+                    (VAR)
+                    (PropertyListPathNotEmpty
+                      (VAR)
+                      (ObjectList (VAR))))))))
+          (OptionalGraphPattern
+            (GroupGraphPattern
+              (GroupGraphPatternSub
+                (TriplesBlock
+                  (TriplesSameSubjectPath
+                    (VAR)
+                    (PropertyListPathNotEmpty
+                      (VAR)
+                      (ObjectList (VAR)))))))))))))
 
 
 ============================
@@ -151,7 +166,7 @@ Optional pattern constraint
 ============================
 
 SELECT * {
-  OPTIONAL { 
+  OPTIONAL {
     ?s ?p ?o
     FILTER (?s < 10)
   }
@@ -159,24 +174,26 @@ SELECT * {
 
 ---
 
-(unit 
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (optional_graph_pattern
-          (group_graph_pattern
-            (triples_block
-              (triples_same_subject
-                (var)
-                (property_list (property
-                  (var)
-                  (object_list (var))))))
-            (filter
-              (bracketted_expression
-                (binary_expression
-                  (var)
-                  (integer))))))))))
+(unit
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+          (OptionalGraphPattern
+            (GroupGraphPattern
+              (GroupGraphPatternSub
+                (TriplesBlock
+                  (TriplesSameSubjectPath
+                    (VAR)
+                    (PropertyListPathNotEmpty
+                      (VAR)
+                      (ObjectList (VAR)))))
+                (Filter
+                  (BrackettedExpression
+                    (binary_expression
+                      (VAR)
+                      (INTEGER))))))))))))
 
 ======================
 Matching alternatives
@@ -191,25 +208,28 @@ SELECT * {
 ---
 
 (unit
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (group_or_union_graph_pattern
-          (group_graph_pattern
-            (triples_block
-              (triples_same_subject
-                (var)
-                (property_list (property
-                  (var)
-                  (object_list (var)))))))
-          (group_graph_pattern
-            (triples_block
-              (triples_same_subject
-                (var)
-                (property_list (property
-                  (var)
-                  (object_list (var))))))))))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+          (GroupOrUnionGraphPattern
+            (GroupGraphPattern
+              (GroupGraphPatternSub
+                (TriplesBlock
+                  (TriplesSameSubjectPath
+                    (VAR)
+                    (PropertyListPathNotEmpty
+                      (VAR)
+                      (ObjectList (VAR)))))))
+            (GroupGraphPattern
+              (GroupGraphPatternSub
+                (TriplesBlock
+                  (TriplesSameSubjectPath
+                    (VAR)
+                    (PropertyListPathNotEmpty
+                      (VAR)
+                      (ObjectList (VAR)))))))))))))
 
 =========
 Negation
@@ -223,22 +243,28 @@ SELECT * {
 
 ---
 
-(unit (select_query 
-  (select_clause)
-  (where_clause (group_graph_pattern
-    (triples_block (triples_same_subject
-      (var)
-      (property_list (property
-        (var)
-        (object_list (var))))))
-    (filter (not_exists_func (group_graph_pattern (triples_block (triples_same_subject
-      (var)
-      (property_list (property
-        (var)
-        (object_list (var)))))))))
-    (minus_graph_pattern (group_graph_pattern (triples_block (triples_same_subject
-        (var)
-        (property_list (property
-          (var)
-          (object_list (var))))))))))))
+(unit (SelectQuery
+  (SelectClause)
+  (WhereClause (GroupGraphPattern (GroupGraphPatternSub
+    (TriplesBlock (TriplesSameSubjectPath
+      (VAR)
+      (PropertyListPathNotEmpty
+        (VAR)
+        (ObjectList (VAR)))))
+          (Filter (BuildInCall
+            (NotExistsFunc
+              (GroupGraphPattern
+                (GroupGraphPatternSub
+                  (TriplesBlock
+                    (TriplesSameSubjectPath
+                      (VAR)
+                      (PropertyListPathNotEmpty
+                          (VAR)
+                          (ObjectList
+                            (VAR))))))))))
+    (MinusGraphPattern (GroupGraphPattern (GroupGraphPatternSub (TriplesBlock (TriplesSameSubjectPath
+        (VAR)
+        (PropertyListPathNotEmpty
+          (VAR)
+          (ObjectList (VAR)))))))))))))
 

@@ -7,13 +7,13 @@ SELECT ( -?a AS $x ) {}
 ---
 
 (unit
-  (select_query
-    (select_clause
+  (SelectQuery
+    (SelectClause
       (unary_expression
-        (var))
-      (var))
-    (where_clause
-      (group_graph_pattern))))
+        (VAR))
+      (VAR))
+    (WhereClause
+      (GroupGraphPattern))))
 
 ==================
 Binary expression
@@ -24,14 +24,14 @@ SELECT ( ?a + ?b AS $x ) {}
 ---
 
 (unit
-  (select_query
-    (select_clause
+  (SelectQuery
+    (SelectClause
       (binary_expression
-        (var)
-        (var))
-      (var))
-    (where_clause
-      (group_graph_pattern))))
+        (VAR)
+        (VAR))
+      (VAR))
+    (WhereClause
+      (GroupGraphPattern))))
 
 
 ==================
@@ -45,45 +45,64 @@ SELECT * {
   FILTER ( 1 <= 2 )
   FILTER ( 1 > 2 )
   FILTER ( 1 >= 2 )
+  FILTER ( 1 IN ( 1, 2, 3))
+  FILTER ( 1 NOT IN ( 1, 2, 3))
 }
 
 ---
 
 (unit
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (filter
-          (bracketted_expression
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+       (GroupGraphPatternSub
+        (Filter
+          (BrackettedExpression
             (binary_expression
-              (integer)
-              (integer))))
-        (filter
-          (bracketted_expression
+              (INTEGER)
+              (INTEGER))))
+        (Filter
+          (BrackettedExpression
             (binary_expression
-              (integer)
-              (integer))))
-        (filter
-          (bracketted_expression
+              (INTEGER)
+              (INTEGER))))
+        (Filter
+          (BrackettedExpression
             (binary_expression
-              (integer)
-              (integer))))
-        (filter
-          (bracketted_expression
+              (INTEGER)
+              (INTEGER))))
+        (Filter
+          (BrackettedExpression
             (binary_expression
-              (integer)
-              (integer))))
-        (filter
-          (bracketted_expression
+              (INTEGER)
+              (INTEGER))))
+        (Filter
+          (BrackettedExpression
             (binary_expression
-              (integer)
-              (integer))))
-        (filter
-          (bracketted_expression
+              (INTEGER)
+              (INTEGER))))
+        (Filter
+          (BrackettedExpression
             (binary_expression
-              (integer)
-              (integer))))))))
+              (INTEGER)
+              (INTEGER))))
+        (Filter
+          (BrackettedExpression
+            (binary_expression
+              (INTEGER)
+              (ExpressionList
+                (INTEGER)
+                (INTEGER)
+                (INTEGER)))))
+        (Filter
+          (BrackettedExpression
+            (binary_expression
+              (INTEGER)
+              (ExpressionList
+                (INTEGER)
+                (INTEGER)
+                (INTEGER))))))))))
 
 ==================
 Precedence levels
@@ -94,16 +113,16 @@ SELECT ( ?a + ?b * 1 AS $x ) {}
 ---
 
 (unit
-  (select_query
-    (select_clause
+  (SelectQuery
+    (SelectClause
       (binary_expression
-        (var)
+        (VAR)
         (binary_expression
-          (var)
-          (integer)))
-      (var))
-    (where_clause
-      (group_graph_pattern))))
+          (VAR)
+          (INTEGER)))
+      (VAR))
+    (WhereClause
+      (GroupGraphPattern))))
 
 ===================
 Extension function
@@ -113,14 +132,14 @@ SELECT ( foo:bar(?a, 1)  AS ?x ) {}
 
 ---
 
-(unit (select_query
-  (select_clause
-    (function_call
-      identifier: (prefixed_name
-        (namespace (pn_prefix))
-        (pn_local))
-      (arg_list
-        (var)
-        (integer)))
-    bound_variable: (var))
-  (where_clause (group_graph_pattern))))
+(unit (SelectQuery
+  (SelectClause
+    (FunctionCall
+      identifier: (PrefixedName
+        (PNAME_NS (PN_PREFIX))
+        (PN_LOCAL))
+      (ArgList
+        (VAR)
+        (INTEGER)))
+    bound_variable: (VAR))
+  (WhereClause (GroupGraphPattern))))

@@ -9,18 +9,31 @@ SELECT * {
 ---
 
 (unit
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (triples_block
-          (triples_same_subject
-            (var)
-            (property_list (property
-              (binary_path
-                (path_element (prefixed_name (namespace) (pn_local)))
-                (path_element (prefixed_name (namespace) (pn_local))))
-              (object_list (var))))))))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+    (TriplesBlock
+      (TriplesSameSubjectPath
+        (VAR)
+        (PropertyListPathNotEmpty
+         (Path
+          (PathSequence
+            (PathEltOrInverse
+              (PathElt
+                (PathPrimary
+                  (PrefixedName
+                    (PNAME_NS)
+                    (PN_LOCAL))))))
+          (PathSequence
+            (PathEltOrInverse
+              (PathElt
+                (PathPrimary
+                  (PrefixedName
+                    (PNAME_NS)
+                    (PN_LOCAL)))))))
+          (ObjectList (VAR))))))))))
 
 =========
 Sequence
@@ -33,18 +46,30 @@ SELECT * {
 ---
 
 (unit
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (triples_block
-          (triples_same_subject
-            (var)
-            (property_list (property
-              (binary_path
-                (path_element (prefixed_name (namespace) (pn_local)))
-                (path_element (prefixed_name (namespace) (pn_local))))
-              (object_list (var))))))))))
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+    (TriplesBlock
+      (TriplesSameSubjectPath
+        (VAR)
+        (PropertyListPathNotEmpty
+         (Path
+      (PathSequence
+        (PathEltOrInverse
+          (PathElt
+            (PathPrimary
+        (PrefixedName
+          (PNAME_NS)
+          (PN_LOCAL)))))
+        (PathEltOrInverse
+          (PathElt
+            (PathPrimary
+        (PrefixedName
+          (PNAME_NS)
+          (PN_LOCAL)))))))
+          (ObjectList (VAR))))))))))
 
 =========
 Modifier
@@ -57,18 +82,22 @@ SELECT * {
 ---
 
 (unit
-  (select_query
-    (select_clause)
-    (where_clause
-      (group_graph_pattern
-        (triples_block
-          (triples_same_subject
-            (var)
-            (property_list (property
-              (path_element
-                (path_inverse)
-                (prefixed_name (namespace) (pn_local))
-                (path_mod))
-            (object_list (var))))))))))
-
-
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+    (TriplesBlock
+      (TriplesSameSubjectPath
+        (VAR)
+        (PropertyListPathNotEmpty
+          (Path
+            (PathSequence
+              (PathEltOrInverse
+                (PathElt
+                  (PathPrimary
+                    (PrefixedName
+                      (PNAME_NS)
+                      (PN_LOCAL)))
+                  (PathMod)))))
+        (ObjectList (VAR))))))))))
