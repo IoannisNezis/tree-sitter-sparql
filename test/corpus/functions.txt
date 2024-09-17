@@ -31,10 +31,24 @@ SELECT (lang('foo') AS ?a) {
 
 ---
 
-(unit (SelectQuery
-  (SelectClause
-    (BuildInCall arguments: (BrackettedExpression (RdfLiteral value: (String (STRING_LITERAL)))))
-    bound_variable: (VAR))
-  (WhereClause (GroupGraphPattern (GroupGraphPatternSub
-      (Filter (BrackettedExpression (BuildInCall arguments: (VAR))))
-      (Filter (BrackettedExpression (BuildInCall arguments: (NIL)))))))))
+(unit
+  (SelectQuery
+    (SelectClause
+      (assignment
+        (BuildInCall
+          arguments: (BrackettedExpression
+            (RdfLiteral
+              value: (String
+                (STRING_LITERAL)))))
+        bound_variable: (VAR)))
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+          (Filter
+            (BrackettedExpression
+              (BuildInCall
+                arguments: (VAR))))
+          (Filter
+            (BrackettedExpression
+              (BuildInCall
+                arguments: (NIL)))))))))

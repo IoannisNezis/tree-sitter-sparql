@@ -151,24 +151,13 @@
   {
     "type": "Bind",
     "named": true,
-    "fields": {
-      "bound_variable": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "VAR",
-            "named": true
-          }
-        ]
-      }
-    },
+    "fields": {},
     "children": {
       "multiple": false,
       "required": true,
       "types": [
         {
-          "type": "_expression",
+          "type": "assignment",
           "named": true
         }
       ]
@@ -766,7 +755,19 @@
       "required": false,
       "types": [
         {
-          "type": "_expression",
+          "type": "BrackettedExpression",
+          "named": true
+        },
+        {
+          "type": "BuildInCall",
+          "named": true
+        },
+        {
+          "type": "FunctionCall",
+          "named": true
+        },
+        {
+          "type": "assignment",
           "named": true
         }
       ]
@@ -1670,7 +1671,7 @@
       "required": false,
       "types": [
         {
-          "type": "_expression",
+          "type": "assignment",
           "named": true
         }
       ]
@@ -2133,6 +2134,32 @@
       "types": [
         {
           "type": "GroupGraphPattern",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "assignment",
+    "named": true,
+    "fields": {
+      "bound_variable": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "VAR",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "_expression",
           "named": true
         }
       ]

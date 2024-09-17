@@ -9,9 +9,10 @@ SELECT ( -?a AS $x ) {}
 (unit
   (SelectQuery
     (SelectClause
-      (unary_expression
-        (VAR))
-      (VAR))
+      (assignment
+        (unary_expression
+          (VAR))
+        (VAR)))
     (WhereClause
       (GroupGraphPattern))))
 
@@ -26,10 +27,11 @@ SELECT ( ?a + ?b AS $x ) {}
 (unit
   (SelectQuery
     (SelectClause
-      (binary_expression
-        (VAR)
-        (VAR))
-      (VAR))
+      (assignment
+        (binary_expression
+          (VAR)
+          (VAR))
+        (VAR)))
     (WhereClause
       (GroupGraphPattern))))
 
@@ -115,12 +117,13 @@ SELECT ( ?a + ?b * 1 AS $x ) {}
 (unit
   (SelectQuery
     (SelectClause
-      (binary_expression
-        (VAR)
+      (assignment
         (binary_expression
           (VAR)
-          (INTEGER)))
-      (VAR))
+          (binary_expression
+            (VAR)
+            (INTEGER)))
+        (VAR)))
     (WhereClause
       (GroupGraphPattern))))
 
@@ -132,14 +135,18 @@ SELECT ( foo:bar(?a, 1)  AS ?x ) {}
 
 ---
 
-(unit (SelectQuery
-  (SelectClause
-    (FunctionCall
-      identifier: (PrefixedName
-        (PNAME_NS (PN_PREFIX))
-        (PN_LOCAL))
-      (ArgList
-        (VAR)
-        (INTEGER)))
-    bound_variable: (VAR))
-  (WhereClause (GroupGraphPattern))))
+(unit
+  (SelectQuery
+    (SelectClause
+      (assignment
+        (FunctionCall
+          identifier: (PrefixedName
+            (PNAME_NS
+              (PN_PREFIX))
+            (PN_LOCAL))
+          (ArgList
+            (VAR)
+            (INTEGER)))
+        bound_variable: (VAR)))
+    (WhereClause
+      (GroupGraphPattern))))

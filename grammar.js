@@ -197,13 +197,7 @@ module.exports = grammar({
       choice(
         repeat1(choice(
           field('bound_variable', $.VAR),
-          seq(
-            '(',
-            $._expression,
-            'AS'.toCaseInsensitiv(),
-            field('bound_variable', $.VAR),
-            ')'
-          )
+          $.assignment
         )),
         '*'
       )
@@ -309,18 +303,13 @@ module.exports = grammar({
     ),
 
     // [20]
+    // NOTE: This rule is altered!
+    // BrackettetExpression and assignment is not to specification.
     GroupCondition: $ => choice(
       $.BuildInCall,
       $.FunctionCall,
-      seq(
-        '(',
-        $._expression,
-        optional(seq(
-          'AS'.toCaseInsensitiv(),
-          field('bound_variable', $.VAR)
-        )),
-        ')'
-      ),
+      $.BrackettedExpression,
+      $.assignment,
       field('bound_variable', $.VAR)
     ),
 
@@ -610,6 +599,11 @@ module.exports = grammar({
     // [60]
     Bind: $ => seq(
       'BIND'.toCaseInsensitiv(),
+      $.assignment
+    ),
+
+    // NOTE: This is a auxiliary rule and not in the specification.
+    assignment: $ => seq(
       '(',
       $._expression,
       'AS'.toCaseInsensitiv(),

@@ -1,0 +1,22 @@
+=========
+Binds
+=========
+
+SELECT * {
+  BIND("a" as ?a)
+}
+
+---
+
+(unit
+  (SelectQuery
+    (SelectClause)
+    (WhereClause
+      (GroupGraphPattern
+        (GroupGraphPatternSub
+          (Bind
+            (assignment
+              (RdfLiteral
+                (String
+                  (STRING_LITERAL)))
+              (VAR))))))))

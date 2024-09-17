@@ -384,41 +384,8 @@
                     }
                   },
                   {
-                    "type": "SEQ",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": "("
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "_expression"
-                      },
-                      {
-                        "type": "ALIAS",
-                        "content": {
-                          "type": "TOKEN",
-                          "content": {
-                            "type": "PATTERN",
-                            "value": "[Aa][Ss]"
-                          }
-                        },
-                        "named": false,
-                        "value": "AS"
-                      },
-                      {
-                        "type": "FIELD",
-                        "name": "bound_variable",
-                        "content": {
-                          "type": "SYMBOL",
-                          "name": "VAR"
-                        }
-                      },
-                      {
-                        "type": "STRING",
-                        "value": ")"
-                      }
-                    ]
+                    "type": "SYMBOL",
+                    "name": "assignment"
                   }
                 ]
               }
@@ -962,54 +929,12 @@
           "name": "FunctionCall"
         },
         {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "("
-            },
-            {
-              "type": "SYMBOL",
-              "name": "_expression"
-            },
-            {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SEQ",
-                  "members": [
-                    {
-                      "type": "ALIAS",
-                      "content": {
-                        "type": "TOKEN",
-                        "content": {
-                          "type": "PATTERN",
-                          "value": "[Aa][Ss]"
-                        }
-                      },
-                      "named": false,
-                      "value": "AS"
-                    },
-                    {
-                      "type": "FIELD",
-                      "name": "bound_variable",
-                      "content": {
-                        "type": "SYMBOL",
-                        "name": "VAR"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            },
-            {
-              "type": "STRING",
-              "value": ")"
-            }
-          ]
+          "type": "SYMBOL",
+          "name": "BrackettedExpression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "assignment"
         },
         {
           "type": "FIELD",
@@ -2494,6 +2419,15 @@
           "named": false,
           "value": "BIND"
         },
+        {
+          "type": "SYMBOL",
+          "name": "assignment"
+        }
+      ]
+    },
+    "assignment": {
+      "type": "SEQ",
+      "members": [
         {
           "type": "STRING",
           "value": "("
