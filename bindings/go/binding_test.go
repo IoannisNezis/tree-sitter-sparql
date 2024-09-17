@@ -3,8 +3,8 @@ package tree_sitter_sparql_test
 import (
 	"testing"
 
-	tree_sitter "github.com/smacker/go-tree-sitter"
-	"github.com/tree-sitter/tree-sitter-sparql"
+	tree_sitter "github.com/tree-sitter/go-tree-sitter"
+	tree_sitter_sparql "github.com/tree-sitter/tree-sitter-sparql/bindings/go"
 )
 
 func TestCanLoadGrammar(t *testing.T) {

@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-sparql"
 description = "sparql grammar for the tree-sitter parsing library"
-version = "0.22.7"
+version = "0.23.0"
 keywords = ["incremental", "parsing", "sparql"]
 categories = ["parsing", "text-editors"]
 repository = "https://github.com/IoannisNezis/tree-sitter-sparql"
@@ -15,7 +15,7 @@ include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter = { package = "tree-sitter-c2rust", version = "0.22.6" }
+tree-sitter-language = "0.1.0"
 
 [build-dependencies]
 cc = "1.0"
