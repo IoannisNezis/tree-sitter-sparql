@@ -1,5 +1,11 @@
-// [X] See section "19.8 Grammar" in https://www.w3.org/TR/sparql11-query/ for
-//     corresponding rule x.
+/**
+ * @file SPARQL grammar for tree-sitter
+ * @author Ioannis Nezis <ioannis@nezis.de>
+ * @license MIT
+ */
+
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
 
 // [155]
 const EXPONENT = [

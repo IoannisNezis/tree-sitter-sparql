@@ -1,12 +1,15 @@
 [package]
 name = "tree-sitter-sparql"
-description = "sparql grammar for the tree-sitter parsing library"
-version = "0.23.0"
-keywords = ["incremental", "parsing", "sparql"]
-categories = ["parsing", "text-editors"]
-repository = "https://github.com/IoannisNezis/tree-sitter-sparql"
-edition = "2018"
+description = "SPARQL grammar for tree-sitter"
+version = "0.24.0"
+authors = ["Ioannis Nezis <ioannis@nezis.de>"]
 license = "MIT"
+readme = "README.md"
+keywords = ["incremental", "parsing", "tree-sitter", "sparql"]
+categories = ["parsing", "text-editors"]
+repository = "https://github.com/ioannisnezis/tree-sitter-sparql.git"
+edition = "2021"
+autoexamples = false
 
 build = "bindings/rust/build.rs"
 include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
@@ -15,7 +18,10 @@ include = ["bindings/rust/*", "grammar.js", "queries/*", "src/*"]
 path = "bindings/rust/lib.rs"
 
 [dependencies]
-tree-sitter-language = "0.1.0"
+tree-sitter-language = "0.1.2"
 
 [build-dependencies]
-cc = "1.0"
+cc = "1.1.22"
+
+[dev-dependencies]
+tree-sitter = "0.24.3"

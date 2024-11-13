@@ -1,23 +1,20 @@
 {
   "name": "tree-sitter-sparql",
-  "version": "0.1.2",
+  "version": "0.24.0",
   "description": "SPARQL grammar for tree-sitter",
+  "repository": "github:tree-sitter/tree-sitter-sparql",
+  "license": "MIT",
+  "author": {
+    "name": "Ioannis Nezis",
+    "email": "ioannis@nezis.de"
+  },
   "main": "bindings/node",
   "types": "bindings/node",
-  "scripts": {
-    "install": "node-gyp-build",
-    "prestart": "tree-sitter build --wasm",
-    "start": "tree-sitter playground",
-    "test": "node --test bindings/node/*_test.js",
-    "prebuildify": "prebuildify --napi --strip"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/BonaBeavis/tree-sitter-sparql.git"
-  },
   "keywords": [
-    "parser",
-    "lexer"
+    "incremental",
+    "parsing",
+    "tree-sitter",
+    "sparql"
   ],
   "files": [
     "grammar.js",
@@ -25,37 +22,35 @@
     "prebuilds/**",
     "bindings/node/*",
     "queries/*",
-    "src/**"
+    "src/**",
+    "*.wasm"
   ],
-  "author": "Gordian Dziwis",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/BonaBeavis/tree-sitter-sparql/issues"
-  },
-  "homepage": "https://github.com/BonaBeavis/tree-sitter-sparql#readme",
   "dependencies": {
-    "node-addon-api": "^7.1.0",
-    "node-gyp-build": "^4.8.0"
+    "node-addon-api": "^8.1.0",
+    "node-gyp-build": "^4.8.2"
+  },
+  "devDependencies": {
+    "prebuildify": "^6.0.1",
+    "tree-sitter-cli": "^0.24.3"
   },
   "peerDependencies": {
-    "tree-sitter": "^0.21.0"
+    "tree-sitter": "^0.21.1"
   },
   "peerDependenciesMeta": {
-    "tree_sitter": {
+    "tree-sitter": {
       "optional": true
     }
   },
-  "devDependencies": {
-    "tree-sitter-cli": "^0.20.0",
-    "prebuildify": "^6.0.0"
+  "scripts": {
+    "install": "node-gyp-build",
+    "prestart": "tree-sitter build --wasm",
+    "start": "tree-sitter playground",
+    "test": "node --test bindings/node/*_test.js"
   },
   "tree-sitter": [
     {
       "scope": "source.sparql",
-      "file-types": [
-        "sparql",
-        "rq"
-      ]
+      "injection-regex": "^sparql$"
     }
   ]
 }

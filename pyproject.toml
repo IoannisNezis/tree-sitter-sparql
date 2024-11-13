@@ -4,26 +4,27 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tree-sitter-sparql"
-description = "Sparql grammar for tree-sitter"
-version = "0.0.1"
+description = "SPARQL grammar for tree-sitter"
+version = "0.24.0"
 keywords = ["incremental", "parsing", "tree-sitter", "sparql"]
 classifiers = [
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
   "Topic :: Software Development :: Compilers",
   "Topic :: Text Processing :: Linguistic",
-  "Typing :: Typed"
+  "Typing :: Typed",
 ]
-requires-python = ">=3.8"
+authors = [{ name = "Ioannis Nezis", email = "ioannis@nezis.de" }]
+requires-python = ">=3.9"
 license.text = "MIT"
 readme = "README.md"
 
 [project.urls]
-Homepage = "https://github.com/tree-sitter/tree-sitter-sparql"
+Homepage = "https://github.com/ioannisnezis/tree-sitter-sparql.git"
 
 [project.optional-dependencies]
-core = ["tree-sitter~=0.21"]
+core = ["tree-sitter~=0.22"]
 
 [tool.cibuildwheel]
-build = "cp38-*"
+build = "cp39-*"
 build-frontend = "build"

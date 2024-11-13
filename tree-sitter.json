@@ -1,0 +1,34 @@
+{
+  "grammars": [
+    {
+      "name": "sparql",
+      "camelcase": "Sparql",
+      "scope": "source.sparql",
+      "path": ".",
+      "file-types": null,
+      "injection-regex": "^sparql$"
+    }
+  ],
+  "metadata": {
+    "version": "0.24.0",
+    "license": "MIT",
+    "description": "SPARQL grammar for tree-sitter",
+    "authors": [
+      {
+        "name": "Ioannis Nezis",
+        "email": "ioannis@nezis.de"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/IoannisNezis/tree-sitter-sparql.git"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
