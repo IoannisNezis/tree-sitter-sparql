@@ -2036,6 +2036,29 @@
       "required": true,
       "types": [
         {
+          "type": "Prologue",
+          "named": true
+        },
+        {
+          "type": "Update",
+          "named": true
+        },
+        {
+          "type": "Update1",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "Update1",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
           "type": "Add",
           "named": true
         },
@@ -2077,14 +2100,6 @@
         },
         {
           "type": "Move",
-          "named": true
-        },
-        {
-          "type": "Prologue",
-          "named": true
-        },
-        {
-          "type": "Update",
           "named": true
         }
       ]

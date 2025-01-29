@@ -1,6 +1,7 @@
 /**
  * @file SPARQL grammar for tree-sitter
  * @author Ioannis Nezis <ioannis@nezis.de>
+ * @author Ioannis Nezis <ioannis@nezis.de>
  * @license MIT
  */
 
@@ -138,25 +139,27 @@ module.exports = grammar({
     Update: $ => seq(
       optional($.Prologue),
       seq(
-        choice(
-          $.Load,
-          $.Clear,
-          $.Drop,
-          $.Add,
-          $.Move,
-          $.Copy,
-          $.Create,
-          $.InsertData,
-          $.DeleteData,
-          $.DeleteWhere,
-          $.Modify
-        ),
+        $.Update1,
         optional(seq(
           ';',
           optional($.Update)
         ))
       )
     ),
+    Update1: $ =>
+      choice(
+        $.Load,
+        $.Clear,
+        $.Drop,
+        $.Add,
+        $.Move,
+        $.Copy,
+        $.Create,
+        $.InsertData,
+        $.DeleteData,
+        $.DeleteWhere,
+        $.Modify
+      ),
 
     // [4]
     Prologue: $ => repeat1(choice(

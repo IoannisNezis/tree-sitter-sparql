@@ -1,7 +1,7 @@
 [package]
 name = "tree-sitter-sparql"
 description = "SPARQL grammar for tree-sitter"
-version = "0.24.0"
+version = "0.24.1"
 authors = ["Ioannis Nezis <ioannis@nezis.de>"]
 license = "MIT"
 readme = "README.md"

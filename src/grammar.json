@@ -104,53 +104,8 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "Load"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Clear"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Drop"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Add"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Move"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Copy"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Create"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "InsertData"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "DeleteData"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "DeleteWhere"
-                },
-                {
-                  "type": "SYMBOL",
-                  "name": "Modify"
-                }
-              ]
+              "type": "SYMBOL",
+              "name": "Update1"
             },
             {
               "type": "CHOICE",
@@ -182,6 +137,55 @@
               ]
             }
           ]
+        }
+      ]
+    },
+    "Update1": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "Load"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Clear"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Drop"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Add"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Move"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Copy"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Create"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "InsertData"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "DeleteData"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "DeleteWhere"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "Modify"
         }
       ]
     },

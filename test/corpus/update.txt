@@ -12,18 +12,19 @@ INSERT DATA {
 
 (unit
   (Update
-    (InsertData
-      (QuadData
-        (Quads
-          (QuadsNotTriples
-            (IRIREF)
-            (TriplesTemplateBlock
-              (TriplesTemplate
-                (TriplesSameSubject
-                  (VAR)
-                  (PropertyListNotEmpty
+    (Update1
+      (InsertData
+        (QuadData
+          (Quads
+            (QuadsNotTriples
+              (IRIREF)
+              (TriplesTemplateBlock
+                (TriplesTemplate
+                  (TriplesSameSubject
                     (VAR)
-                    (ObjectList (VAR))))))))))))
+                    (PropertyListNotEmpty
+                      (VAR)
+                      (ObjectList (VAR)))))))))))))
 
 =====
 Load
@@ -35,11 +36,39 @@ LOAD :foo INTO GRAPH :bar
 
 (unit
   (Update
-    (Load
-      (PrefixedName
-        (PNAME_NS)
-        (PN_LOCAL))
-      (GraphRef
+    (Update1
+      (Load
         (PrefixedName
           (PNAME_NS)
-            (PN_LOCAL))))))
+          (PN_LOCAL))
+        (GraphRef
+          (PrefixedName
+            (PNAME_NS)
+              (PN_LOCAL)))))))
+
+=====
+Modify
+=====
+
+PREFIX a: <>
+LOAD SILENT <a> INTO GRAPH <c> ; 
+LOAD <b> ;
+
+---
+
+(unit
+  (Update
+    (Prologue
+      (PrefixDecl
+        (PNAME_NS
+          (PN_PREFIX))
+        (IRIREF)))
+    (Update1
+      (Load
+        (IRIREF)
+        (GraphRef
+          (IRIREF))))
+    (Update
+      (Update1
+        (Load
+          (IRIREF))))))
