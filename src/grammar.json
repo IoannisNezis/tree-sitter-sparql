@@ -7529,10 +7529,9 @@
   "conflicts": [],
   "precedences": [],
   "externals": [],
-  "inline": [
-    "Query"
-  ],
+  "inline": [],
   "supertypes": [
     "_expression"
-  ]
+  ],
+  "reserved": {}
 }

@@ -9,6 +9,7 @@ SELECT * {
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -18,7 +19,7 @@ SELECT * {
             (RegexExpression
               text: (VAR)
               pattern: (RdfLiteral value: (String (STRING_LITERAL)))
-              flag: (RdfLiteral value: (String (STRING_LITERAL)))))))))))
+              flag: (RdfLiteral value: (String (STRING_LITERAL))))))))))))
 
 ====================
 Unary built in call
@@ -32,6 +33,7 @@ SELECT (lang('foo') AS ?a) {
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause
       (assignment
@@ -51,4 +53,4 @@ SELECT (lang('foo') AS ?a) {
           (Filter
             (BrackettedExpression
               (BuildInCall
-                arguments: (NIL)))))))))
+                arguments: (NIL))))))))))

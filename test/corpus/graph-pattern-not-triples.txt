@@ -9,6 +9,7 @@ SELECT * {
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -19,4 +20,4 @@ SELECT * {
               (RdfLiteral
                 (String
                   (STRING_LITERAL)))
-              (VAR))))))))
+              (VAR)))))))))

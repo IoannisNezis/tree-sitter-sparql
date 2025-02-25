@@ -12,6 +12,7 @@ FROM NAMED <www.example.com>
 ---
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause)
     (DatasetClause
@@ -21,7 +22,7 @@ FROM NAMED <www.example.com>
       (NamedGraphClause
         source_selector: (IRIREF)))
     (WhereClause
-      (GroupGraphPattern))))
+      (GroupGraphPattern)))))
 
 =============
 Group clause
@@ -34,6 +35,7 @@ GROUP BY ?a
 ---
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -41,7 +43,7 @@ GROUP BY ?a
     (SolutionModifier
       (GroupClause
         (GroupCondition
-          (VAR))))))
+          (VAR)))))))
 
 ==============
 Having clause
@@ -54,6 +56,7 @@ HAVING ex:function ()
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
     (WhereClause (GroupGraphPattern))
@@ -62,7 +65,7 @@ HAVING ex:function ()
         (HavingCondition
           (FunctionCall
             (PrefixedName (PNAME_NS (PN_PREFIX)) (PN_LOCAL))
-            (ArgList (NIL))))))))
+            (ArgList (NIL)))))))))
 
 =============
 Order clause
@@ -75,6 +78,7 @@ ORDER BY ASC (?a)
 ---
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -83,7 +87,7 @@ ORDER BY ASC (?a)
       (OrderClause
         (OrderCondition
           (BrackettedExpression
-            (VAR)))))))
+            (VAR))))))))
 
 ====================
 Limit offset clause
@@ -98,6 +102,7 @@ OFFSET 10
 ---
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -107,7 +112,7 @@ OFFSET 10
         (LimitClause
           (INTEGER))
         (OffsetClause
-          (INTEGER))))))
+          (INTEGER)))))))
 
 ==============
 Values clause
@@ -122,6 +127,7 @@ VALUES (?a ?b) {
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -132,4 +138,4 @@ VALUES (?a ?b) {
       (VAR)
       (RdfLiteral
         (String
-          (STRING_LITERAL))))))
+          (STRING_LITERAL)))))))

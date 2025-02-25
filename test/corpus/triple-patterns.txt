@@ -14,6 +14,7 @@ WHERE {
 
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -26,7 +27,7 @@ WHERE {
                   (VAR)
                   (ObjectList (VAR))
                   (VAR)
-                  (ObjectList (VAR))))))))))
+                  (ObjectList (VAR)))))))))))
 
 ======================
 Predicate object list
@@ -40,6 +41,7 @@ CONSTRUCT WHERE {
 ---
 
 (unit
+  (Query
   (ConstructQuery
     (TriplesTemplate
       (TriplesSameSubject
@@ -50,7 +52,7 @@ CONSTRUCT WHERE {
               object: (VAR))
             predicate: (VAR)
             (ObjectList
-              object: (VAR)))))))
+              object: (VAR))))))))
 
 
 ============
@@ -67,6 +69,7 @@ WHERE {
 ---
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -79,7 +82,7 @@ WHERE {
                   predicate: (VAR)
                   (ObjectList
                     object: (VAR)
-                    object: (VAR))))))))))
+                    object: (VAR)))))))))))
 
 ===============
 Rdf collection
@@ -93,7 +96,7 @@ WHERE {
 
 ---
 
-(unit (SelectQuery
+(unit (Query (SelectQuery
   (SelectClause)
   (WhereClause
     (GroupGraphPattern
@@ -114,7 +117,7 @@ WHERE {
                                 (PN_LOCAL)))))))
                     (ObjectList (PrefixedName
                       (PNAME_NS) (PN_LOCAL)))))
-              (collection (VAR))))))))))
+              (collection (VAR)))))))))))
 
 =========
 Rdf:type
@@ -130,30 +133,31 @@ WHERE {
 ---
 
 (unit
-  (SelectQuery
-    (SelectClause)
-    (WhereClause
-      (GroupGraphPattern
-        (GroupGraphPatternSub
-          (TriplesBlock
-            (TriplesSameSubjectPath
-              (VAR)
-              (PropertyListPathNotEmpty
-                  (Path
-                    (PathSequence
-                      (PathEltOrInverse
-                        (PathElt
-                          (PathPrimary)))))
-                  (ObjectList (VAR))))
-            (TriplesSameSubjectPath
-              (BlankNodePropertyListPath
-                (PropertyListPathNotEmpty
-                    (Path
-                      (PathSequence
-                        (PathEltOrInverse
-                          (PathElt
-                            (PathPrimary)))))
-                    (ObjectList (PrefixedName (PNAME_NS) (PN_LOCAL)))))
-              (PropertyListPathNotEmpty
+  (Query
+      (SelectQuery
+        (SelectClause)
+        (WhereClause
+          (GroupGraphPattern
+            (GroupGraphPatternSub
+              (TriplesBlock
+                (TriplesSameSubjectPath
                   (VAR)
-                  (ObjectList (VAR))))))))))
+                  (PropertyListPathNotEmpty
+                      (Path
+                        (PathSequence
+                          (PathEltOrInverse
+                            (PathElt
+                              (PathPrimary)))))
+                      (ObjectList (VAR))))
+                (TriplesSameSubjectPath
+                  (BlankNodePropertyListPath
+                    (PropertyListPathNotEmpty
+                        (Path
+                          (PathSequence
+                            (PathEltOrInverse
+                              (PathElt
+                                (PathPrimary)))))
+                        (ObjectList (PrefixedName (PNAME_NS) (PN_LOCAL)))))
+                  (PropertyListPathNotEmpty
+                      (VAR)
+                      (ObjectList (VAR)))))))))))

@@ -108,10 +108,6 @@ module.exports = grammar({
     $._expression
   ],
 
-  inline: $ => [
-    $.Query
-  ],
-
   word: $ => $.PN_PREFIX,
 
   rules: {
