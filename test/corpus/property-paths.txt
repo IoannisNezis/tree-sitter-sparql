@@ -8,7 +8,7 @@ SELECT * {
 
 ---
 
-(unit
+(unit (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -33,7 +33,7 @@ SELECT * {
                   (PrefixedName
                     (PNAME_NS)
                     (PN_LOCAL)))))))
-          (ObjectList (VAR))))))))))
+          (ObjectList (VAR)))))))))))
 
 =========
 Sequence
@@ -45,7 +45,7 @@ SELECT * {
 
 ---
 
-(unit
+(unit (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -69,7 +69,7 @@ SELECT * {
         (PrefixedName
           (PNAME_NS)
           (PN_LOCAL)))))))
-          (ObjectList (VAR))))))))))
+          (ObjectList (VAR)))))))))))
 
 =========
 Modifier
@@ -81,7 +81,7 @@ SELECT * {
 
 ---
 
-(unit
+(unit (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -100,4 +100,4 @@ SELECT * {
                       (PNAME_NS)
                       (PN_LOCAL)))
                   (PathMod)))))
-        (ObjectList (VAR))))))))))
+        (ObjectList (VAR)))))))))))

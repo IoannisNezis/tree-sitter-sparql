@@ -13,6 +13,7 @@ VALUES ?var {
 ---
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -24,7 +25,7 @@ VALUES ?var {
       (IRIREF)
       (PrefixedName
         (PNAME_NS (PN_PREFIX))
-        (PN_LOCAL)))))
+        (PN_LOCAL))))))
 
 =========
 Literals
@@ -50,6 +51,7 @@ VALUES ?var {
 ---
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -71,7 +73,7 @@ VALUES ?var {
       (DOUBLE)
       (RdfLiteral
         (String (STRING_LITERAL))
-        (PrefixedName (PNAME_NS (PN_PREFIX)) (PN_LOCAL))))))
+        (PrefixedName (PNAME_NS (PN_PREFIX)) (PN_LOCAL)))))))
 
 =======================
 String escape sequence
@@ -85,13 +87,13 @@ VALUES ?var {
 
 ---
 
-(unit (SelectQuery
+(unit (Query (SelectQuery
   (SelectClause)
   (WhereClause (GroupGraphPattern)))
   (ValuesClause (DataBlock
     (VAR)
     (RdfLiteral
-      (String (STRING_LITERAL))))))
+      (String (STRING_LITERAL)))))))
 
 ================
 Query variables
@@ -102,9 +104,10 @@ SELECT $foo ?bar {}
 ---
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause (VAR) (VAR))
-    (WhereClause (GroupGraphPattern))))
+    (WhereClause (GroupGraphPattern)))))
 
 ============
 Blank nodes
@@ -120,6 +123,7 @@ SELECT * {
 ---
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -189,7 +193,7 @@ SELECT * {
               (PropertyListPathNotEmpty
                 (VAR)
                 (ObjectList
-                  (VAR))))))))))
+                  (VAR)))))))))))
 
 ====
 Nil
@@ -204,10 +208,11 @@ VALUES () {
 ---
 
 (unit
+  (Query
   (SelectQuery
     (SelectClause)
     (WhereClause (GroupGraphPattern)))
     (ValuesClause
       (DataBlock
         (NIL)
-        (NIL))))
+        (NIL)))))

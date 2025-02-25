@@ -1562,6 +1562,41 @@
     }
   },
   {
+    "type": "Query",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "AskQuery",
+          "named": true
+        },
+        {
+          "type": "ConstructQuery",
+          "named": true
+        },
+        {
+          "type": "DescribeQuery",
+          "named": true
+        },
+        {
+          "type": "Prologue",
+          "named": true
+        },
+        {
+          "type": "SelectQuery",
+          "named": true
+        },
+        {
+          "type": "ValuesClause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "RdfLiteral",
     "named": true,
     "fields": {
@@ -2391,35 +2426,15 @@
     "root": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "AskQuery",
-          "named": true
-        },
-        {
-          "type": "ConstructQuery",
-          "named": true
-        },
-        {
-          "type": "DescribeQuery",
-          "named": true
-        },
-        {
-          "type": "Prologue",
-          "named": true
-        },
-        {
-          "type": "SelectQuery",
+          "type": "Query",
           "named": true
         },
         {
           "type": "Update",
-          "named": true
-        },
-        {
-          "type": "ValuesClause",
           "named": true
         }
       ]
@@ -2999,7 +3014,8 @@
   },
   {
     "type": "comment",
-    "named": true
+    "named": true,
+    "extra": true
   },
   {
     "type": "false",

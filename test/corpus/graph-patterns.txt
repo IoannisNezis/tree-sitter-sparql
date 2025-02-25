@@ -9,6 +9,7 @@ SELECT * {
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -29,7 +30,7 @@ SELECT * {
                   (ObjectList
                     (PrefixedName
                       (PNAME_NS)
-                      (PN_LOCAL)))))))))))
+                      (PN_LOCAL))))))))))))
 
 =====================
 Group graph patterns
@@ -45,6 +46,7 @@ SELECT * {
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -78,7 +80,7 @@ SELECT * {
                     (VAR)
                     (PropertyListPathNotEmpty
                       (VAR)
-                      (ObjectList (VAR)))))))))))))
+                      (ObjectList (VAR))))))))))))))
 
 ====================
 Empty group pattern
@@ -89,9 +91,10 @@ SELECT * {}
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
-    (WhereClause (GroupGraphPattern))))
+    (WhereClause (GroupGraphPattern)))))
 
 =======
 Filter
@@ -105,6 +108,7 @@ SELECT * {
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -120,7 +124,7 @@ SELECT * {
               (BrackettedExpression
                 (binary_expression
                   (VAR)
-                  (INTEGER)))))))))
+                  (INTEGER))))))))))
 
 =================
 Optional pattern
@@ -135,6 +139,7 @@ SELECT * {
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -158,7 +163,7 @@ SELECT * {
                     (VAR)
                     (PropertyListPathNotEmpty
                       (VAR)
-                      (ObjectList (VAR)))))))))))))
+                      (ObjectList (VAR))))))))))))))
 
 
 ============================
@@ -175,6 +180,7 @@ SELECT * {
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -193,7 +199,7 @@ SELECT * {
                   (BrackettedExpression
                     (binary_expression
                       (VAR)
-                      (INTEGER))))))))))))
+                      (INTEGER)))))))))))))
 
 ======================
 Matching alternatives
@@ -208,6 +214,7 @@ SELECT * {
 ---
 
 (unit
+(Query
   (SelectQuery
     (SelectClause)
     (WhereClause
@@ -229,7 +236,7 @@ SELECT * {
                     (VAR)
                     (PropertyListPathNotEmpty
                       (VAR)
-                      (ObjectList (VAR)))))))))))))
+                      (ObjectList (VAR))))))))))))))
 
 =========
 Negation
@@ -243,7 +250,7 @@ SELECT * {
 
 ---
 
-(unit (SelectQuery
+(unit (Query (SelectQuery
   (SelectClause)
   (WhereClause (GroupGraphPattern (GroupGraphPatternSub
     (TriplesBlock (TriplesSameSubjectPath
@@ -266,5 +273,5 @@ SELECT * {
         (VAR)
         (PropertyListPathNotEmpty
           (VAR)
-          (ObjectList (VAR)))))))))))))
+          (ObjectList (VAR))))))))))))))
 

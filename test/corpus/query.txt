@@ -9,7 +9,7 @@ SELECT * {}
 
 ---
 
-(unit
+(unit (Query
   (Prologue
     (BaseDecl
       (IRIREF))
@@ -19,7 +19,7 @@ SELECT * {}
   (SelectQuery
     (SelectClause)
     (WhereClause
-      (GroupGraphPattern))))
+      (GroupGraphPattern)))))
 
 ==============
 Select query
@@ -33,11 +33,11 @@ WHERE {
 
 ---
 
-(unit
+(unit (Query
   (SelectQuery
     (SelectClause)
     (WhereClause
-      (GroupGraphPattern))))
+      (GroupGraphPattern)))))
 
 ================
 Subselect query
@@ -50,7 +50,7 @@ SELECT * {
 ---
 
 (unit
-  (SelectQuery
+  (Query (SelectQuery
     (SelectClause)
     (WhereClause
       (GroupGraphPattern
@@ -58,7 +58,7 @@ SELECT * {
           (SubSelect
             (SelectClause)
             (WhereClause
-              (GroupGraphPattern))))))))
+              (GroupGraphPattern)))))))))
 
 =========================
 Construct template query
@@ -76,7 +76,7 @@ WHERE {
 ---
 
 (unit
-  (ConstructQuery
+  (Query (ConstructQuery
    (ConstructTemplate
     (ConstructTriples
       (TriplesSameSubject
@@ -97,7 +97,7 @@ WHERE {
                 subject: (VAR)
                 (PropertyListPathNotEmpty
                   predicate: (VAR)
-                  (ObjectList object: (VAR))))))))))
+                  (ObjectList object: (VAR)))))))))))
 
 =======================
 Construct triple query
@@ -110,13 +110,13 @@ CONSTRUCT WHERE {
 ---
 
 (unit
-  (ConstructQuery
+  (Query (ConstructQuery
     (TriplesTemplate
       (TriplesSameSubject
         (VAR)
         (PropertyListNotEmpty
           (VAR)
-          (ObjectList (VAR)))))))
+          (ObjectList (VAR))))))))
 
 ===============
 Describe query
@@ -129,7 +129,7 @@ DESCRIBE
 ---
 
 (unit
-  (DescribeQuery))
+  (Query (DescribeQuery)))
 
 ==========
 Ask query
@@ -142,9 +142,9 @@ WHERE {}
 ---
 
 (unit
-  (AskQuery
+  (Query (AskQuery
     (WhereClause
-      (GroupGraphPattern))))
+      (GroupGraphPattern)))))
 
 ========
 Comment
@@ -160,10 +160,10 @@ SELECT * {}
 
 (unit
   (comment)
-  (SelectQuery
+  (Query (SelectQuery
     (SelectClause)
     (WhereClause
-      (GroupGraphPattern)))
+      (GroupGraphPattern))))
   (comment))
 
 ===================
@@ -176,7 +176,7 @@ select DISTINCT * Where {
 
 ---
 
-(unit (SelectQuery
+(unit (Query (SelectQuery
   (SelectClause)
   (WhereClause (GroupGraphPattern
         (GroupGraphPatternSub
@@ -193,4 +193,4 @@ select DISTINCT * Where {
                               (PNAME_NS
                                 (PN_PREFIX)
                                 (MISSING ":"))))))))
-                  (ObjectList (VAR))))))))))
+                  (ObjectList (VAR)))))))))))
